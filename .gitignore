@@ -1,0 +1,10 @@
+/log/*.log
+/tmp
+/public/assets
+.env
+node_modules
+npm-debug.log*
+/coverage
+delete.sh
+make_rails.sh
+make_react.sh
