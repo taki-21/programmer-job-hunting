@@ -1,10 +1,11 @@
 import React, { useState, useEffect, createContext } from "react"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import CommonLayout from "components/layouts/CommonLayout"
-import Home from "components/pages/Home"
+import Home from "components/pages/home_page/Home"
 import SignUp from "components/pages/SignUp"
 import SignIn from "components/pages/SignIn"
+import MyPage from "components/pages/my_page/MyPage"
 
 import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
@@ -48,33 +49,15 @@ const App: React.FC = () => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
-
-  // ユーザーが認証済みかどうかでルーティングを決定
-  // 未認証だった場合は「/signin」ページに促す
-  const Private = ({ children }: { children: React.ReactElement }) => {
-    if (!loading) {
-      if (isSignedIn) {
-        return children
-      } else {
-        return <Redirect to="/signin" />
-      }
-    } else {
-      return <></>
-    }
-  }
-
   return (
     <Router>
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
         <CommonLayout>
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
-            <Private>
-              <Switch>
-                <Route exact path="/" component={Home} />
-              </Switch>
-            </Private>
+            <Route exact path="/mypage" component={MyPage} />
           </Switch>
         </CommonLayout>
       </AuthContext.Provider>

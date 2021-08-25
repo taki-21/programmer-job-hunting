@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }))
 
-const Header: React.FC = () => {
+const Footer: React.FC = () => {
   const classes = useStyles()
   const history = useHistory();
 
@@ -57,4 +57,4 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+export default Footer
