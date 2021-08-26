@@ -4,8 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+company1:
+  company_name: "aaaaaaaa"
+  company_address: "東京都品川区"
+  company_overview: "東京にある会社です"
+  company_num_of_emp: "500 - 800" 

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_034835) do
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "company_name"
     t.text "company_address"
-    t.text "conmany_overview"
+    t.text "company_overview"
     t.string "company_num_of_emp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_034835) do
     t.integer "company_id"
     t.string "newgra_or_midcar"
     t.string "eng_category"
+    t.boolean "admin", default: false
     t.string "image"
     t.string "email"
     t.text "tokens"

@@ -4,7 +4,7 @@ class CompanyTest < ActiveSupport::TestCase
   
   def setup
     @company = Company.new(company_name: "freeeee",company_address: "東京都品川区五反田",
-                            conmany_overview: "「freeeee会計」などのバックオフィス業務を改善する自社ソフトを開発している会社です。",
+                            company_overview: "「freeeee会計」などのバックオフィス業務を改善する自社ソフトを開発している会社です。",
                           company_num_of_emp: "500~700")
   end
 
@@ -23,7 +23,7 @@ class CompanyTest < ActiveSupport::TestCase
   end
 
   test "company overview should be present" do
-    @company.conmany_overview = "   "
+    @company.company_overview = "   "
     assert_not @company.valid?
   end
 
@@ -42,9 +42,9 @@ class CompanyTest < ActiveSupport::TestCase
   end
 
   test "company overview should be 1500 charactors or less" do
-    @company.conmany_overview = "a"*2000
+    @company.company_overview = "a"*2000
     assert @company.valid?
-    @company.conmany_overview = "a"*2001
+    @company.company_overview = "a"*2001
     assert_not @company.valid?
   end
 
