@@ -8,6 +8,7 @@ import MyPage from "components/pages/my_page/MyPage"
 
 import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({ } as {
@@ -23,6 +24,13 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<User | undefined>()
+
+  const theme = extendTheme({
+    //  whiteが背景色になるようなので書き換える
+    colors: {
+      white: '#EDF2F7'
+    }
+  })
 
   // 認証済みのユーザーがいるかどうかチェック
   // 確認できた場合はそのユーザーの情報を取得
@@ -51,13 +59,15 @@ const App: React.FC = () => {
   return (
     <Router>
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
-        <CommonLayout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/mypage" component={MyPage} />
-          </Switch>
-        </CommonLayout>
+        <ChakraProvider theme={theme}>
+          <CommonLayout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/mypage" component={MyPage} />
+            </Switch>
+          </CommonLayout>
+        </ChakraProvider>
       </AuthContext.Provider>
     </Router>
   )

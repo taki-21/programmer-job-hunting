@@ -10,7 +10,6 @@ import {
   AlertDialogOverlay
 } from "@chakra-ui/react"
 import SignIn from "components/pages/my_page/auth/SignIn"
-import { useHistory } from "react-router-dom"
 import Cookies from "js-cookie"
 
 import { signOut } from "lib/api/auth"
@@ -19,7 +18,6 @@ import { signOut } from "lib/api/auth"
 // マイページ
 const MyPage: React.FC = () => {
   const { currentUser, isSignedIn, setIsSignedIn } = useContext(AuthContext)
-  const histroy = useHistory()
   const [isOpen, setIsOpen] = React.useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef<HTMLButtonElement>(null)
