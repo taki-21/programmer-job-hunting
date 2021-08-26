@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import CommonLayout from "components/layouts/CommonLayout"
 import Home from "components/pages/home_page/Home"
-import SignUp from "components/pages/SignUp"
-import SignIn from "components/pages/SignIn"
+import SignUp from "components/pages/my_page/auth/SignUp"
 import MyPage from "components/pages/my_page/MyPage"
 
 import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
 
 // グローバルで扱う変数・関数
-export const AuthContext = createContext({} as {
+export const AuthContext = createContext({ } as {
   loading: boolean
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   isSignedIn: boolean
@@ -56,7 +55,6 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/signin" component={SignIn} />
             <Route exact path="/mypage" component={MyPage} />
           </Switch>
         </CommonLayout>
