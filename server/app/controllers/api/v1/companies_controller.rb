@@ -6,7 +6,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def search
-    companies = companies.all.page(params[:page])
+    companies = Company.all.page(params[:page])
     render json: companies
   end
 

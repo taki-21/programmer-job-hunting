@@ -40,7 +40,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <Typography
             component={Link}

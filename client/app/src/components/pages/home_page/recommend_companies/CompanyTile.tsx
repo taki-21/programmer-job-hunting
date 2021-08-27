@@ -10,7 +10,8 @@ type Props = {
 
 const CompanyTile: React.FC<Props> = (props) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" bg="White">
+    <Box as="button" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" bg="White"
+    >
 
       <Box p="6">
         <Box
