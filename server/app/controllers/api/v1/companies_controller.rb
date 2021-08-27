@@ -1,7 +1,12 @@
 class Api::V1::CompaniesController < ApplicationController
 
   def index
-    companies = Company.all.page(params[:page])
+    companies = Company.first(5)
+    render json: companies
+  end
+
+  def search
+    companies = companies.all.page(params[:page])
     render json: companies
   end
 
