@@ -1,25 +1,13 @@
-import React, { useContext } from "react"
-
-import { AuthContext } from "App"
+import React from "react"
+import ReccomendCompanies from "./recommend_companies/ReccomendCompanies"
 
 // とりあえず認証済みユーザーの名前やメールアドレスを表示
 const Home: React.FC = () => {
-  const { isSignedIn, currentUser } = useContext(AuthContext)
 
   return (
     <>
-      {
-        isSignedIn && currentUser ? (
-          <>
-            <h2>メールアドレス: {currentUser?.email}</h2>
-            <h2>名前: {currentUser?.name}</h2>
-          </>
-        ) : (
-          <>
-            <h3>User not login</h3>
-          </>
-        )
-      }
+      <ReccomendCompanies>
+      </ReccomendCompanies>
     </>
   )
 }

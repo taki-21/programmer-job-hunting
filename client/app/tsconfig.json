@@ -22,6 +22,7 @@
     "baseUrl": "src"
   },
   "include": [
-    "src"
+    "src",
+    "src/components/pages/home_page/top_companies/.ReccomendCompaniestsx"
   ]
 }
