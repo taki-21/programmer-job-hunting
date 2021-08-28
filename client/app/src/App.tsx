@@ -10,6 +10,7 @@ import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import CompanySearch from "components/pages/company_search/CompanySearch"
+import CompanyDetail from "components/pages/company_detail/CompanyDetail"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({ } as {
@@ -67,6 +68,7 @@ const App: React.FC = () => {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/mypage" component={MyPage} />
               <Route exact path="/search" component={CompanySearch} />
+              <Route path="/detail/:companyId" component={CompanyDetail} />
             </Switch>
           </CommonLayout>
         </ChakraProvider>

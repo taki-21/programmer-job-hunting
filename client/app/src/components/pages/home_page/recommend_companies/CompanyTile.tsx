@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react"
+import { useHistory } from "react-router";
 
 type Props = {
   data: {
@@ -9,8 +10,11 @@ type Props = {
 }
 
 const CompanyTile: React.FC<Props> = (props) => {
+  const history = useHistory();
+
   return (
     <Box as="button" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" bg="White"
+      onClick={() => history.push(`/detail/${props.data.id}`)}
     >
 
       <Box p="6">

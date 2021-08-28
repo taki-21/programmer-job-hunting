@@ -28,7 +28,6 @@ const CompanySearch: React.FC = () => {
     if (res.status === 200) {
       setCompanies(res.data)
     }
-    console.log(companies)
   }
 
   useEffect(() => {

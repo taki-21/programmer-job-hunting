@@ -1,5 +1,6 @@
 class Api::V1::CompaniesController < ApplicationController
 
+  # TOPページに表示する会社
   def index
     companies = Company.first(5)
     render json: companies
@@ -19,9 +20,10 @@ class Api::V1::CompaniesController < ApplicationController
     end
   end
 
-  # 未実装
+  # 会社詳細情報
   def show
     @company = Company.find(params[:id])
+    render json: @company
   end
 
   def update

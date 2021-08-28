@@ -25,3 +25,11 @@ export interface User {
   image?: string
   allowPasswordChange: boolean
 }
+
+// 会社情報の型を定義 
+export interface Company {
+  id: number
+  companyName: string
+  companyOverview: string
+  companyNumOfEnp: string
+}

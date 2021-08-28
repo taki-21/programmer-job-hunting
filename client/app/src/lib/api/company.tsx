@@ -6,6 +6,11 @@ export const reccomendCompany = () => {
 }
 
 export const searchCompany = (page: number) => {
-  const getUrl: string = `search?page=${page}`;
+  const getUrl: string = `search/${page}`;
   return client.get(getUrl)
+}
+
+export const companyDetail = (companyId: string) => {
+  const getUrl: string = `companies/${companyId}`;
+  return client.get(getUrl);
 }

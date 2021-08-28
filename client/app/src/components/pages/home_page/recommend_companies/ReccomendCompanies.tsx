@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Flex } from "@chakra-ui/react"
 import { reccomendCompany } from "lib/api/company";
 import CompanyTile from "./CompanyTile";
+import { Company } from "interfaces";
 
 
 const ReccomendCompanies: React.FC = () => {
@@ -13,7 +14,6 @@ const ReccomendCompanies: React.FC = () => {
     if (res.status === 200) {
       setCompanies(res.data)
     }
-    console.log(companies)
   }
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ReccomendCompanies: React.FC = () => {
   }, [])
 
   return (<Flex>
-    {companies.map((item: any) => <CompanyTile data={item} key={item.id}></CompanyTile>)
+    {companies.map((item: Company) => <CompanyTile data={item} key={item.id}></CompanyTile>)
     }
   </Flex>)
 }

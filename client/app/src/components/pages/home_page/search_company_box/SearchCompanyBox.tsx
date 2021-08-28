@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "@chakra-ui/input";
-import { Box, Link, Spacer, Text } from "@chakra-ui/layout";
+import { Box, Link, Text } from "@chakra-ui/layout";
 
 const SearchCompanyBox: React.FC = () => {
 
