@@ -9,6 +9,8 @@
 
 puts 'Creating Company...'
 
+Company.create(name: "freee", adress: "gotanda", overview: "SaaS Company")
 Company.create(name: "photoruction", adress: "nihonbashi", overview: "SaaS Company")
+Company.create(name: "sansan", adress: "omotesando", overview: "SaaS Company")
 
 puts '...Finished!'

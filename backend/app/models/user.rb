@@ -7,5 +7,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  belongs_to :companies
+  belongs_to :company
+  has_many :techstacks 
+  has_many :incomes
+  has_many :welfares
+  has_many :selections
 end
