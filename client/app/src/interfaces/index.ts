@@ -31,5 +31,5 @@ export interface Company {
   id: number
   companyName: string
   companyOverview: string
-  companyNumOfEnp: string
+  companyNumOfEmp: string
 }

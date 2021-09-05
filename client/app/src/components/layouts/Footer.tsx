@@ -1,60 +1,53 @@
-import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Box, Container, Grid, Link } from "@material-ui/core";
+import React from "react";
 
-import { makeStyles, Theme } from "@material-ui/core/styles"
+const Footer = () => {
+  return <footer>
+    <Box bgcolor="text.secondary" color="White" marginTop={30}>
+      <Container maxWidth="lg">
+        <Grid container spacing={5}>
+          <Grid item xs={12} sm={6}>
+            <Box>
+              <Link href="/" color="inherit">
+                ホーム
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/" color="inherit">
+                会社を探す
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/" color="inherit">
+                スキルで探す
+              </Link>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box>
+              <Link href="/mypage" color="inherit">
+                マイページ
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/" color="inherit">
+                ログイン・ログアウト
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/" color="inherit">
+                管理者
+              </Link>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+      <Box textAlign="center" p={3}>
+        @2021 All rights Reserved.
+      </Box>
 
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
-import IconButton from "@material-ui/core/IconButton"
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  iconButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    textDecoration: "none",
-    color: "inherit"
-  },
-  linkBtn: {
-    textTransform: "none"
-  }
-}))
-
-const Footer: React.FC = () => {
-  const classes = useStyles()
-  const history = useHistory();
-
-  const MyPageButton = () => {
-    return <IconButton
-      edge="start"
-      className={classes.iconButton}
-      color="inherit"
-      onClick={() => history.push("/mypage")}
-    >
-      <PermIdentityIcon />
-    </IconButton>
-  }
-
-  return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            component={Link}
-            to="/"
-            variant="h6"
-            className={classes.title}
-          >
-            Programmer-Job-Hunting
-          </Typography>
-          <MyPageButton />
-        </Toolbar>
-      </AppBar>
-    </>
-  )
-}
+    </Box>
+  </footer >
+};
 
 export default Footer

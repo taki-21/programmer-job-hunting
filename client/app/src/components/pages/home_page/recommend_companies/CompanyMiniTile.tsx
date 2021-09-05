@@ -9,7 +9,7 @@ type Props = {
   };
 }
 
-const CompanyTile: React.FC<Props> = (props) => {
+const CompanyMiniTile: React.FC<Props> = (props) => {
   const history = useHistory();
 
   return (
@@ -36,4 +36,4 @@ const CompanyTile: React.FC<Props> = (props) => {
   )
 }
 
-export default CompanyTile
+export default CompanyMiniTile

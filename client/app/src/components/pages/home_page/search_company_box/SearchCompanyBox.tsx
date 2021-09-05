@@ -10,7 +10,7 @@ const SearchCompanyBox: React.FC = () => {
         <Box as="h6" m="3">会社を探す</Box>
         <Input variant="filled" placeholder="Filled" m="3" />
         <Text textAlign="right">
-          <Link href="/search">
+          <Link href="/search/1">
             すべての会社から探す→
           </Link>
         </Text>

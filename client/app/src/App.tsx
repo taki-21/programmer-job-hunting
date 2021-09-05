@@ -67,7 +67,7 @@ const App: React.FC = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/mypage" component={MyPage} />
-              <Route exact path="/search" component={CompanySearch} />
+              <Route path="/search/:page" component={CompanySearch} />
               <Route path="/detail/:companyId" component={CompanyDetail} />
             </Switch>
           </CommonLayout>

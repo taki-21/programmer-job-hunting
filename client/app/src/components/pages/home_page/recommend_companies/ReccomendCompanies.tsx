@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex } from "@chakra-ui/react"
 import { reccomendCompany } from "lib/api/company";
-import CompanyTile from "./CompanyTile";
+import CompanyTile from "./CompanyMiniTile";
 import { Company } from "interfaces";
 
 

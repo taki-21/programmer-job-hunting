@@ -5,7 +5,7 @@ export const reccomendCompany = () => {
   return client.get("companies")
 }
 
-export const searchCompany = (page: number) => {
+export const searchCompany = (page: string) => {
   const getUrl: string = `search/${page}`;
   return client.get(getUrl)
 }
