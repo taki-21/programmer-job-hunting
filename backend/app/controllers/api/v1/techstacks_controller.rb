@@ -5,6 +5,11 @@ class Api::V1::TechstacksController < ApplicationController
         render json: {status: 200, techstacks: techstacks}
     end
 
+    def show
+        techstack = Techstack.where(company_id: params[:id])
+        render json: {status: 200, techstack: techstack}
+    end
+
     def create
         techstack = Techstack.new(techstack_params)
         if techstack.save

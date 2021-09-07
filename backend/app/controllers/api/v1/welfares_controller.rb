@@ -4,6 +4,11 @@ class Api::V1::WelfaresController < ApplicationController
         render json: {status: 200, welfares: welfares}
     end
 
+    def show
+        welfare = Welfare.where(company_id: params[:id])
+        render json: {status: 200, welfare: welfare}
+    end
+
     def create
         welfare = Welfare.new(welfare_params)
         if welfare.save

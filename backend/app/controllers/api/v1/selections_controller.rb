@@ -4,6 +4,11 @@ class Api::V1::SelectionsController < ApplicationController
         render json: {status: 200, selections: selections}
     end
 
+    def show
+        selection = Selection.where(company_id: params[:id])
+        render json: {status: 200, selection: selection}
+    end
+
     def create
         selection = Selection.new(selection_params)
         if selection.save

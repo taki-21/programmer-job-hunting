@@ -4,6 +4,11 @@ class Api::V1::IncomesController < ApplicationController
         render json: {status: 200, incomes: incomes}
     end
 
+    def show
+        income = Income.where(company_id: params[:id])
+        render json: {status: 200, income: income}
+    end
+
     def create
         income = Income.new(income_params)
         if income.save
