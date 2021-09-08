@@ -7,7 +7,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def search
-    companies = Company.all.page(params[:page])
+    companies = Company.page(params[:id] ||= 1).per(10).order('created_at ASC')
     render json: companies
   end
 

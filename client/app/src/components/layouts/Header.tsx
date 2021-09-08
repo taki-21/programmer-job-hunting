@@ -49,7 +49,6 @@ const useStyles = makeStyles(() => ({
     marginLeft: "20px",
   },
   toolbar: {
-    display: "flex",
     justifyContent: "space-between",
   },
   drawerContainer: {
@@ -177,7 +176,7 @@ export default function Header() {
 
   return (
     <header>
-      <AppBar className={header}>
+      <AppBar className={header} position="sticky">
         {mobileView ? displayMobile() : displayDesktop()}
       </AppBar>
     </header>

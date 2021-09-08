@@ -13,7 +13,7 @@ import CompanySearch from "components/pages/company_search/CompanySearch"
 import CompanyDetail from "components/pages/company_detail/CompanyDetail"
 
 // グローバルで扱う変数・関数
-export const AuthContext = createContext({ } as {
+export const AuthContext = createContext({} as {
   loading: boolean
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   isSignedIn: boolean

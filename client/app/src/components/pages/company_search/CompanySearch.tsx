@@ -14,16 +14,22 @@ const CompanySearch: React.FC<PageProps> = props => {
   const [companies, setCompanies] = useState([])
   const history = useHistory()
 
-  const getCompany = async () => {
-    const res = await searchCompany(props.match.params.page)
+  const getCompany = async (page: string) => {
+    const res = await searchCompany(page)
 
     if (res.status === 200) {
+      console.log(res.data);
       setCompanies(res.data)
     }
   }
 
+  const pageTransion = (page: number) => {
+    history.push(`/search/${page}`);
+    getCompany(page.toString());
+  }
+
   useEffect(() => {
-    getCompany()
+    getCompany(props.match.params.page)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -31,9 +37,9 @@ const CompanySearch: React.FC<PageProps> = props => {
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
       <List>
-        {companies.map((company: Company) => <CompanyCard key={company.id} data={company}></CompanyCard>)}
+        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}></CompanyCard>) : null}
       </List>
-      <Pagination count={10} onChange={() => history.push(`/search/${Number(props.match.params.page) + 1}`)}></Pagination>
+      <Pagination count={10} onChange={(_, page) => pageTransion(page)}></Pagination>
     </>
   )
 }
