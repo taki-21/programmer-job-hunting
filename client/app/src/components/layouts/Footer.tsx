@@ -1,44 +1,80 @@
-import { Box, Container, Grid, Link } from "@material-ui/core";
-import React from "react";
+import { Box, Container, Grid, Link, makeStyles } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 
-const Footer = () => {
+const footerDataLeft = [
+  {
+    label: "ホーム",
+    href: "/",
+  },
+  {
+    label: "会社を探す",
+    href: "/search/1",
+  },
+  {
+    label: "スキルで探す",
+    href: "/",
+  },
+
+];
+
+const footerDataRight = [
+  {
+    label: "マイページ",
+    href: "/mypage",
+  },
+  {
+    label: "ログイン・ログアウト",
+    href: "/mypage",
+  },
+  {
+    label: "管理者",
+    href: "/",
+  },
+];
+
+
+const useStyles = makeStyles(() => ({
+  footer: {
+    backgroundColor: "#4A69BD"
+  },
+  footerMenu: {
+    padding: "5px 25px",
+  }
+}))
+
+export default function Footer() {
+  const { footer, footerMenu } = useStyles();
+
+
+  const getFooterMenu = (footerData: { label: string, href: string }[]) => {
+    return footerData.map(({ label, href }) => {
+      return (
+        <Box className={footerMenu}>
+          <Link {
+            ...{
+              component: RouterLink,
+              to: href,
+              color: "inherit",
+              style: { textDecoration: "none" },
+              key: label,
+            }
+          }>
+            {label}
+          </Link>
+        </Box>
+      );
+    })
+  }
+
   return <footer>
-    <Box bgcolor="text.secondary" color="White" marginTop={30}>
+    <Box bgcolor="text.secondary" color="White" marginTop={30} className={footer}>
       <Container maxWidth="lg">
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
-            <Box>
-              <Link href="/" color="inherit">
-                ホーム
-              </Link>
-            </Box>
-            <Box>
-              <Link href="/" color="inherit">
-                会社を探す
-              </Link>
-            </Box>
-            <Box>
-              <Link href="/" color="inherit">
-                スキルで探す
-              </Link>
-            </Box>
+            {getFooterMenu(footerDataLeft)}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Box>
-              <Link href="/mypage" color="inherit">
-                マイページ
-              </Link>
-            </Box>
-            <Box>
-              <Link href="/" color="inherit">
-                ログイン・ログアウト
-              </Link>
-            </Box>
-            <Box>
-              <Link href="/" color="inherit">
-                管理者
-              </Link>
-            </Box>
+            {getFooterMenu(footerDataRight)}
           </Grid>
         </Grid>
       </Container>
@@ -49,5 +85,3 @@ const Footer = () => {
     </Box>
   </footer >
 };
-
-export default Footer
