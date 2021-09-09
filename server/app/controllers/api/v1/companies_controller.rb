@@ -13,6 +13,7 @@ class Api::V1::CompaniesController < ApplicationController
 
   def create
     @company = Company.new(companies_params)
+    @company.company_image.attach(params[:companies][:company_image])
     if @company.save
       render status: :created, json: {message: "update success"}
     else
@@ -42,7 +43,7 @@ class Api::V1::CompaniesController < ApplicationController
   private
 
     def companies_params
-      params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp)
+      params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp,:company_image)
     end
 
 end

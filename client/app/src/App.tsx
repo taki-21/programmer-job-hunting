@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import CommonLayout from "components/layouts/CommonLayout"
 import Home from "components/pages/home_page/Home"
-import SignUp from "components/pages/my_page/auth/SignUp"
+import Registration from "components/pages/my_page/registration/Registration"
 import MyPage from "components/pages/my_page/MyPage"
 
 import { getCurrentUser } from "lib/api/auth"
@@ -65,10 +65,10 @@ const App: React.FC = () => {
           <CommonLayout>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/signup" component={SignUp} />
               <Route exact path="/mypage" component={MyPage} />
               <Route path="/search/:page" component={CompanySearch} />
               <Route path="/detail/:companyId" component={CompanyDetail} />
+              <Route path="/registration" component={Registration} />
             </Switch>
           </CommonLayout>
         </ChakraProvider>
