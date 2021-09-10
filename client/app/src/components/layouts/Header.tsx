@@ -21,7 +21,7 @@ const headersData = [
   },
   {
     label: "スキルで探す",
-    href: "/",
+    href: "/skill",
   },
   {
     label: "マイページ",

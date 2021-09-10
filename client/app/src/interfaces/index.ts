@@ -29,7 +29,8 @@ export interface User {
 // 会社情報の型を定義 
 export interface Company {
   id: number
-  companyName: string
-  companyOverview: string
-  companyNumOfEmp: string
+  companyName: String
+  companyOverview: String
+  companyNumOfEmp: String
+  companyImage: File
 }

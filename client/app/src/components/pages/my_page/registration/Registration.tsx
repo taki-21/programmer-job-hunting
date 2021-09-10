@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import { Button, Card, CardContent, Typography } from "@material-ui/core";
+import Box from "@material-ui/core/Box"
 import TextField from "@material-ui/core/TextField"
+import IconButton from "@material-ui/core/IconButton"
+import CancelIcon from "@material-ui/icons/Cancel"
+import axios, { AxiosPromise, AxiosResponse } from "axios"
+import applyCaseMiddleware from "axios-case-converter"
+
+// Postするデータにはidが存在しないことによりエラーが発生したので
+// interfaceで定義したCompanyとは別で定義している（要リファクタ）
+
+interface PostCompany {
+  companyName: String
+  companyOverview: String
+  companyNumOfEmp: String
+  companyImage: File | undefined
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardContentText: {
@@ -24,14 +39,66 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Registration: React.FC = () => {
   const classes = useStyles()
+  // TODO:Companyをsetするようにリファクタ
+  const [image, setImage] = useState<File>()
   const [companyName, setComopanyName] = useState<String>("")
   const [companyAddress, setComopanyAddress] = useState<String>("")
   const [companyOverview, setComopanyOverview] = useState<String>("")
   const [companyNumOfEmp, setComopanyNumOfEmp] = useState<String>("")
+  const [preview, setPreview] = useState<string>("")
+
+  const uploadImage = useCallback((e) => {
+    const file = e.target.files[0]
+    setImage(file)
+  }, [])
+
+  const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const data: PostCompany = {
+      companyName: companyName,
+      companyOverview: companyOverview,
+      companyNumOfEmp: companyNumOfEmp,
+      companyImage: image
+    }
+
+
+    await createPost(data)
+      .then(() => {
+        setComopanyName("")
+        setComopanyAddress("")
+        setComopanyNumOfEmp("")
+        setComopanyOverview("")
+        setImage(undefined)
+      })
+  }
+
+  const previewImage = useCallback((e) => {
+    const file = e.target.files[0]
+    setPreview(window.URL.createObjectURL(file))
+  }, [])
+
+  const createPost = (data: PostCompany): AxiosPromise => {
+    const client = applyCaseMiddleware(axios.create({
+      baseURL: "http://localhost:3001/api/v1",
+      headers: {
+        "Content-Type": "multipart/form-data" // 画像ファイルを取り扱うのでform-dataで送信
+      },
+    }), { ignoreHeaders: true });
+
+    client.interceptors.response.use(
+      (response: AxiosResponse): AxiosResponse => {
+        const data = response.data
+        return { ...response.data, data }
+      }
+    )
+
+    return client.post("/companies", { "companies": { data } })
+  }
 
   return (
     <>
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" onSubmit={handleCreatePost}>
         <Typography
           variant="h5"
         >
@@ -89,26 +156,44 @@ const Registration: React.FC = () => {
             />
             <div className={classes.imageSelectButton}>
               <Button component="label" variant="outlined">
-                会社ロゴ画像アップロード
+                会社画像アップロード
                 <input
+                  id="compamy-file"
+                  accept="image/*"
                   type="file"
                   name="image"
                   style={{ display: "none" }}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    uploadImage(e)
+                    previewImage(e)
+                  }}
                 />
               </Button>
             </div>
-            <div className={classes.imageSelectButton}>
-              <Button component="label" variant="outlined">
-                アイキャッチ画像アップロード
-                <input
-                  type="file"
-                  name="image"
-                  style={{ display: "none" }}
+            {preview ?
+              <Box
+                sx={{ borderRadius: 1, borderColor: "grey.400" }}
+
+              >
+                <IconButton
+                  color="inherit"
+                  onClick={() => setPreview("")}
+                >
+                  <CancelIcon />
+                </IconButton>
+                <img
+                  src={preview}
+                  alt="preview img"
                 />
-              </Button>
-            </div>
+              </Box> : null
+            }
             <div className={classes.submitButton}>
-              <Button variant="contained" color="primary" href="">
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                size="large"
+              >
                 送信
               </Button>
             </div>

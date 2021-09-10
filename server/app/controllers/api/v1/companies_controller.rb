@@ -1,4 +1,5 @@
 class Api::V1::CompaniesController < ApplicationController
+  #before_action :post_params, only: [:create]
 
   # TOPページに表示する会社
   def index
@@ -12,12 +13,14 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(companies_params)
-    @company.company_image.attach(params[:companies][:company_image])
-    if @company.save
-      render status: :created, json: {message: "update success"}
+    puts "@@"*20
+    puts params
+    puts "@@"*20
+    @company = Company.create post_params
+    if @company.save!
+      render status: :created, json: {message: "create success"}
     else
-      render status: :conflict, json: {message: "update failed"}
+      render status: :conflict, json: {message: "create failed"}
     end
   end
 
@@ -41,6 +44,10 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   private
+
+    def post_params
+      params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp,:company_image)
+    end
 
     def companies_params
       params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp,:company_image)

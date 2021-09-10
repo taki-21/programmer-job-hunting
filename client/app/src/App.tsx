@@ -11,6 +11,8 @@ import { User } from "interfaces/index"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import CompanySearch from "components/pages/company_search/CompanySearch"
 import CompanyDetail from "components/pages/company_detail/CompanyDetail"
+import SignUp from "components/pages/my_page/auth/SignUp"
+import SkillSearch from "components/pages/skill_search/SkillSearch"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({} as {
@@ -66,9 +68,11 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/mypage" component={MyPage} />
+              <Route exact path="/signup" component={SignUp} />
               <Route path="/search/:page" component={CompanySearch} />
               <Route path="/detail/:companyId" component={CompanyDetail} />
               <Route path="/registration" component={Registration} />
+              <Route path="/skill" component={SkillSearch} />
             </Switch>
           </CommonLayout>
         </ChakraProvider>

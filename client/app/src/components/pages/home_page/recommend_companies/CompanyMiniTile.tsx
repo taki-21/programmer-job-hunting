@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 type Props = {
   data: {
     id: number;
-    companyName: string;
+    companyName: String;
   };
 }
 
