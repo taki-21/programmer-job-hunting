@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { searchCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyCard from "./company_tile/CompanyCard";
@@ -15,12 +16,25 @@ const CompanySearch: React.FC<PageProps> = props => {
   const history = useHistory()
 
   const getCompany = async (page: string) => {
+    /*
     const res = await searchCompany(page)
 
     if (res.status === 200) {
       console.log(res.data);
       setCompanies(res.data)
+    }*/
+    var dummyData: any = [];
+    for (var i = 0; i < 10; i++) {
+      var dummyNum = i + page;
+      dummyData.push({
+        "id": i,
+        "companyName": "dummy" + dummyNum,
+        "companyOverview": "dummy" + dummyNum + "カンパニーは自社アプリケーション開発をメインとした会社です。時代に先駆けて新しい価値をユーザーに提供することを会社の理念としています。とてもアットホームな職場環境で、離職率も非常に低くなっております。",
+        "companyNumOfEmp": "dummy" + dummyNum,
+      });
     }
+
+    setCompanies(dummyData);
   }
 
   const pageTransion = (page: number) => {
