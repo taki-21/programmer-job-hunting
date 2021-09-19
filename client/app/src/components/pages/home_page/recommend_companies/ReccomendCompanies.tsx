@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react"
 import { reccomendCompany } from "lib/api/company";
 import CompanyTile from "./CompanyMiniTile";
 import { Company } from "interfaces";
-
+import { Button, Grid } from "@material-ui/core";
 
 
 const ReccomendCompanies: React.FC = () => {
@@ -46,12 +46,14 @@ const ReccomendCompanies: React.FC = () => {
   }, [])
 
   return (
-    <>
-      {
-        dummyData.map((item: Company) => <CompanyTile data={item} key={item.id} />
-        )
-      }
-    </>
+    <div style={{ width: '100%' }}>
+      <Grid container>
+        {
+          dummyData.map((item: Company) => <Grid item><CompanyTile data={item} key={item.id} /></Grid>)
+        }
+      </Grid>
+    </div >
+
   )
 }
 

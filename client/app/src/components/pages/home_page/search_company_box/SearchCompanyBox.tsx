@@ -49,10 +49,11 @@ let companyNameList: SimpleCompany[] = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   card: {
     width: 500,
     margin: "15px 0px",
+    alignContent: "center"
   },
   cardHeader: {
     background: "#063052",
@@ -103,7 +104,7 @@ const SearchCompanyBox: React.FC = () => {
 
 
   return (
-    <>
+    <Grid container justifyContent="center">
       <Card className={classes.card}>
         <CardHeader className={classes.cardHeader} title="厳選された企業から探す" titleTypographyProps={{ variant: "body1" }}>
         </CardHeader>
@@ -115,7 +116,8 @@ const SearchCompanyBox: React.FC = () => {
           </Grid>
         </CardContent>
       </Card>
-    </>
+    </Grid>
+
   );
 }
 
