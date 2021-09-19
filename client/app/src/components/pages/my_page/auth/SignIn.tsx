@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     padding: theme.spacing(2),
-    maxWidth: 400
+    width: 500,
+    margin: "15px 0px"
   },
   box: {
     marginTop: "2rem"
@@ -87,8 +88,12 @@ const SignIn: React.FC = () => {
   return (
     <>
       <form noValidate autoComplete="off">
+        <Typography
+          variant="h5"
+        >
+          サインイン
+        </Typography>
         <Card className={classes.card}>
-          <CardHeader className={classes.header} title="サインイン" />
           <CardContent>
             <TextField
               variant="outlined"

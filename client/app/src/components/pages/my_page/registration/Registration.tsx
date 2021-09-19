@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     padding: theme.spacing(2),
-    maxWidth: 900,
+    width: 500,
     margin: "15px 0px",
   },
   imageSelectButton: {

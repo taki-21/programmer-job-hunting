@@ -16,7 +16,6 @@ const CompanyMiniTile: React.FC<Props> = (props) => {
     <Box as="button" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" bg="White"
       onClick={() => history.push(`/detail/${props.data.id}`)}
     >
-
       <Box p="6">
         <Box
           as="p"

@@ -17,9 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     padding: theme.spacing(2),
-    maxWidth: 650,
-    minWidth: 440,
-    minHeight: 100,
+    width: 500
   },
   image: {
     width: "75px",
@@ -40,10 +38,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const CompanyCard: React.FC<Props> = (props) => {
   const classes = useStyles()
-  let companyOverview: String = props.data.companyOverview;
+  let companyOverview: String = props.data.companyOverview ?? "";
   // テキストの長さを制限
-  if (companyOverview.length > 80) {
-    companyOverview = companyOverview.slice(0, 80);
+  if (companyOverview.length > 50) {
+    companyOverview = companyOverview.slice(0, 50);
     companyOverview += "...";
   }
   return (
