@@ -13,6 +13,7 @@ import CompanySearch from "components/pages/company_search/CompanySearch"
 import CompanyDetail from "components/pages/company_detail/CompanyDetail"
 import SignUp from "components/pages/my_page/auth/SignUp"
 import SkillSearch from "components/pages/skill_search/SkillSearch"
+import NotFound from "components/pages/404/404"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({} as {
@@ -73,6 +74,7 @@ const App: React.FC = () => {
               <Route path="/detail/:companyId" component={CompanyDetail} />
               <Route path="/registration" component={Registration} />
               <Route path="/skill" component={SkillSearch} />
+              <Route component={NotFound} />
             </Switch>
           </CommonLayout>
         </ChakraProvider>

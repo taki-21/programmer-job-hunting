@@ -1,13 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useEffect } from "react";
-import { Flex } from "@chakra-ui/react"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { reccomendCompany } from "lib/api/company";
+import { Text } from "@chakra-ui/layout";
 import CompanyTile from "./CompanyMiniTile";
 import { Company } from "interfaces";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 
 const ReccomendCompanies: React.FC = () => {
-  const [companies, setCompanies] = useState([])
+  //const [companies, setCompanies] = useState([])
 
   let dummyData: Company[] = [
     {
@@ -16,19 +18,15 @@ const ReccomendCompanies: React.FC = () => {
     },
     {
       id: 2,
-      companyName: "Speee",
+      companyName: "freeee",
     },
     {
       id: 3,
-      companyName: "Speee",
+      companyName: "アカツキ",
     },
     {
       id: 4,
-      companyName: "Speee",
-    },
-    {
-      id: 5,
-      companyName: "Speee",
+      companyName: "ラクーン",
     },
   ];
 
@@ -47,6 +45,7 @@ const ReccomendCompanies: React.FC = () => {
 
   return (
     <div style={{ width: '100%' }}>
+      <Text as="h1" fontSize="25">おすすめの企業</Text>
       <Grid container>
         {
           dummyData.map((item: Company) => <Grid item><CompanyTile data={item} key={item.id} /></Grid>)

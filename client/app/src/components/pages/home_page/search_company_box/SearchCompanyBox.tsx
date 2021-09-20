@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-import { makeStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
