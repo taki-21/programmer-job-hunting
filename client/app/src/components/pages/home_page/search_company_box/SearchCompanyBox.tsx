@@ -9,45 +9,16 @@ import CardHeader from "@material-ui/core/CardHeader"
 import { Button, Grid } from "@material-ui/core";
 import { Text } from "@chakra-ui/layout";
 
-interface SimpleCompany {
-  companyId: number,
-  companyName: string
-}
-
 // APIで取得するデータ
-let companyNameList: SimpleCompany[] = [
-  {
-    companyId: 1,
-    companyName: "Speee"
-  },
-  {
-    companyId: 2,
-    companyName: "BCG"
-  },
-  {
-    companyId: 3,
-    companyName: "アクセンチュア"
-  },
-  {
-    companyId: 4,
-    companyName: "フィーチャー"
-  },
-  {
-    companyId: 5,
-    companyName: "ソウゾウ"
-  },
-  {
-    companyId: 6,
-    companyName: "News Picks"
-  },
-  {
-    companyId: 7,
-    companyName: "AWS"
-  },
-  {
-    companyId: 8,
-    companyName: "Sky"
-  },
+let companyNameList: String[] = [
+  "Speee",
+  "BCG",
+  "アクセンチュア",
+  "フィーチャー",
+  "ソウゾウ",
+  "News Picks",
+  "AWS",
+  "Sky",
 ];
 
 const useStyles = makeStyles(() => ({
@@ -74,31 +45,31 @@ const SearchCompanyBox: React.FC = () => {
   const classes = useStyles()
   const history = useHistory()
 
-  const companyNameLink = (data: SimpleCompany) => {
+  const companyNameLink = (companyName: String) => {
     return (
       <li>
-        <Link to={`/detail/${data.companyId}`} target="_blank" rel="noopener" className={classes.linkText}>
-          {data.companyName}
+        <Link to={`/search/companies?keyword=${companyName}`} target="_blank" rel="noopener" className={classes.linkText}>
+          {companyName}
         </Link>
       </li>
     );
   }
 
-  const companyNameLinkList = (companyList: SimpleCompany[]) => {
+  const companyNameLinkList = (companyList: String[]) => {
     // APIからは偶数個のデータが返却される想定
-    let list1: SimpleCompany[] = companyList.slice(0, Math.floor(companyList.length / 2));
-    let list2: SimpleCompany[] = companyList.slice(Math.floor(companyList.length / 2), companyList.length);
+    let list1: String[] = companyList.slice(0, Math.floor(companyList.length / 2));
+    let list2: String[] = companyList.slice(Math.floor(companyList.length / 2), companyList.length);
 
     return (
       <Grid container className={classes.content}>
         <Grid item xs={6}>
           <ul>
-            {list1.map((item: SimpleCompany) => companyNameLink(item))}
+            {list1.map((item: String) => companyNameLink(item))}
           </ul>
         </Grid>
         <Grid item xs={6}>
           <ul>
-            {list2.map((item: SimpleCompany) => companyNameLink(item))}
+            {list2.map((item: String) => companyNameLink(item))}
           </ul>
         </Grid>
       </Grid>
