@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom"
 
 import { makeStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField"
@@ -70,7 +70,9 @@ const useStyles = makeStyles(() => ({
 
 
 const SearchCompanyBox: React.FC = () => {
+  const [keyword, setKeyword] = useState("")
   const classes = useStyles()
+  const history = useHistory()
 
   const companyNameLink = (data: SimpleCompany) => {
     return (
@@ -103,7 +105,6 @@ const SearchCompanyBox: React.FC = () => {
     );
   }
 
-
   return (
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
@@ -112,10 +113,20 @@ const SearchCompanyBox: React.FC = () => {
           <CardHeader className={classes.cardHeader} title="厳選された企業を掲載しています" titleTypographyProps={{ variant: "body1" }}>
           </CardHeader>
           <CardContent className={classes.content}>
-            <TextField id="filled-basic" label="企業名で探す" variant="outlined" fullWidth />
+            <TextField
+              id="filled-basic"
+              label="企業名で探す"
+              variant="outlined"
+              fullWidth
+              onChange={(event) => setKeyword(event.target.value)}
+            />
             {companyNameLinkList(companyNameList)}
             <Grid container alignItems="center" justifyContent="center">
-              <Button variant="contained" color="primary">検索</Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => history.push("/search/companies?keyword=" + keyword)}
+              >検索</Button>
             </Grid>
           </CardContent>
         </Card>

@@ -4,7 +4,7 @@ import { Company } from "interfaces";
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles, Theme } from "@material-ui/core/styles"
-import DummyLogo from './Icon-512.png';
+import DummyLogo from 'images/Icon-512.png';
 
 
 type Props = {

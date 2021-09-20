@@ -19,6 +19,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Divider className={classes.contentDivider} />
       <ReccomendCompanies>
       </ReccomendCompanies>
       <Divider className={classes.contentDivider} />
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
       </SearchCompanyBox>
       <Divider className={classes.contentDivider} />
       <SearchTile></SearchTile>
+      <Divider className={classes.contentDivider} />
     </>
   )
 }

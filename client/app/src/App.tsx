@@ -14,6 +14,7 @@ import CompanyDetail from "components/pages/company_detail/CompanyDetail"
 import SignUp from "components/pages/my_page/auth/SignUp"
 import SkillSearch from "components/pages/skill_search/SkillSearch"
 import NotFound from "components/pages/404/404"
+import SearchCompanyName from "components/pages/search_company_name/SearchCompanyName"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({} as {
@@ -34,7 +35,7 @@ const App: React.FC = () => {
     //  whiteが背景色になるようなので書き換える
     colors: {
       //white: '#EDF2F7'
-      white: "#FFFFFF"
+      white: "#FCFCFC"
     }
   })
 
@@ -71,10 +72,12 @@ const App: React.FC = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/mypage" component={MyPage} />
               <Route exact path="/signup" component={SignUp} />
-              <Route path="/search/:page" component={CompanySearch} />
+              <Route path="/companies" component={CompanySearch} />
               <Route path="/detail/:companyId" component={CompanyDetail} />
               <Route path="/registration" component={Registration} />
               <Route path="/skill" component={SkillSearch} />
+
+              <Route path="/search/companies" component={SearchCompanyName} />
               <Route component={NotFound} />
             </Switch>
           </CommonLayout>

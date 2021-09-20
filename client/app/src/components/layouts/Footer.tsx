@@ -8,7 +8,7 @@ const footerDataLeft = [
   },
   {
     label: "会社を探す",
-    href: "/search/1",
+    href: "/companies",
   },
   {
     label: "スキルで探す",
