@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardHeader from "@material-ui/core/CardHeader"
 import { Button, Grid } from "@material-ui/core";
+import { Text } from "@chakra-ui/layout";
 
 interface SimpleCompany {
   companyId: number,
@@ -51,7 +52,7 @@ let companyNameList: SimpleCompany[] = [
 
 const useStyles = makeStyles(() => ({
   card: {
-    width: 500,
+    width: 650,
     margin: "15px 0px",
     alignContent: "center"
   },
@@ -104,20 +105,22 @@ const SearchCompanyBox: React.FC = () => {
 
 
   return (
-    <Grid container justifyContent="center">
-      <Card className={classes.card}>
-        <CardHeader className={classes.cardHeader} title="厳選された企業から探す" titleTypographyProps={{ variant: "body1" }}>
-        </CardHeader>
-        <CardContent className={classes.content}>
-          <TextField id="filled-basic" label="企業名で探す" variant="outlined" fullWidth />
-          {companyNameLinkList(companyNameList)}
-          <Grid container alignItems="center" justifyContent="center">
-            <Button variant="contained" color="primary">検索</Button>
-          </Grid>
-        </CardContent>
-      </Card>
-    </Grid>
-
+    <>
+      <Text as="h1" fontSize="25">全ての会社から探す</Text>
+      <Grid container justifyContent="center">
+        <Card className={classes.card}>
+          <CardHeader className={classes.cardHeader} title="厳選された企業を掲載しています" titleTypographyProps={{ variant: "body1" }}>
+          </CardHeader>
+          <CardContent className={classes.content}>
+            <TextField id="filled-basic" label="企業名で探す" variant="outlined" fullWidth />
+            {companyNameLinkList(companyNameList)}
+            <Grid container alignItems="center" justifyContent="center">
+              <Button variant="contained" color="primary">検索</Button>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    </>
   );
 }
 

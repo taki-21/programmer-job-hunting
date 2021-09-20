@@ -1,10 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import { RouteComponentProps } from 'react-router-dom'
 
-type PageProps = {} & RouteComponentProps<{ companyId: string }>;
-
-const NotFound: React.FC<PageProps> = props => {
+const NotFound: React.FC = () => {
 
   return (
     <>
