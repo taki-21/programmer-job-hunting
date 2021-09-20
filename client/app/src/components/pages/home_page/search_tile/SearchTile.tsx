@@ -11,7 +11,6 @@ import Search from "images/search.png";
 
 const useStyles = makeStyles(() => ({
   card: {
-    margin: "15px 0px",
     padding: "30px 30px",
     alignContent: "center"
   },
@@ -19,6 +18,9 @@ const useStyles = makeStyles(() => ({
     width: 260,
     height: 260,
   },
+  contentMargin: {
+    margin: "15px 0px"
+  }
 }))
 
 
@@ -27,10 +29,10 @@ const SearchTile: React.FC = () => {
 
   return (
     <>
-      <div>
+      <div >
         <Text as="h1" fontSize="25">条件で絞り込む</Text>
       </div>
-      <Grid container justifyContent="center" spacing={1}>
+      <Grid container justifyContent="center" spacing={1} className={classes.contentMargin}>
         <Grid item xs={6}>
           <CardActionArea>
             <Card className={classes.card}>

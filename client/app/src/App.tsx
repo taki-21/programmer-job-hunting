@@ -33,7 +33,8 @@ const App: React.FC = () => {
   const theme = extendTheme({
     //  whiteが背景色になるようなので書き換える
     colors: {
-      white: '#EDF2F7'
+      //white: '#EDF2F7'
+      white: "#FFFFFF"
     }
   })
 
