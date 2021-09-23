@@ -45,7 +45,7 @@ const CompanyCard: React.FC<Props> = (props) => {
     companyOverview += "...";
   }
   return (
-    <ListItem alignItems="flex-start">
+    <ListItem alignItems="flex-start" key={props.data.id}>
       <Card className={classes.card}>
         <Grid container spacing={2}>
           <Grid item>

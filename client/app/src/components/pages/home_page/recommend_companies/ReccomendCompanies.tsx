@@ -48,7 +48,12 @@ const ReccomendCompanies: React.FC = () => {
       <Text as="h1" fontSize="25">おすすめの企業</Text>
       <Grid container>
         {
-          dummyData.map((item: Company) => <Grid item><CompanyTile data={item} key={item.id} /></Grid>)
+          dummyData.map(
+            (item: Company) =>
+              <Grid item key={item.id}>
+                <CompanyTile data={item} />
+              </Grid>
+          )
         }
       </Grid>
     </div >

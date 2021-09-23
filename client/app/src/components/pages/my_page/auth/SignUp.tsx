@@ -58,9 +58,7 @@ const SignUp: React.FC = () => {
     }
 
     try {
-      console.log(data)
       const res = await signUp(data)
-      console.log(res)
 
       if (res.status === 200) {
         // アカウント作成と同時にサインインさせてしまう

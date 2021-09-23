@@ -55,7 +55,7 @@ const SearchTile: React.FC = () => {
         <Grid item xs={6}>
           <CardActionArea>
             <Card className={classes.card}>
-              <Link to={"/search"} >
+              <Link to={"/companies"} >
                 <CardMedia
                   className={classes.image}
                   component="img"

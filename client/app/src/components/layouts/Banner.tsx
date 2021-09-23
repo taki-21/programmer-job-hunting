@@ -6,9 +6,7 @@ import { CardActionArea, CardMedia, Grid } from "@material-ui/core";
 
 
 const useStyles = makeStyles(() => ({
-  bannerImage: {
-    height: "190px"
-  },
+
   banner: {
     padding: "10px 0px",
     background: "#EDF2F7",
@@ -28,7 +26,6 @@ const Banner: React.FC = () => {
           <CardActionArea>
             <Link to={"/skill"}>
               <CardMedia
-                className={classes.bannerImage}
                 component="img"
                 image={BannerImage}
                 alt="company image"

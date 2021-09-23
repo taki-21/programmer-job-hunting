@@ -10,7 +10,7 @@ import { Button, Grid } from "@material-ui/core";
 import { Text } from "@chakra-ui/layout";
 
 // APIで取得するデータ
-let companyNameList: String[] = [
+let companyNameList: string[] = [
   "Speee",
   "BCG",
   "アクセンチュア",
@@ -45,31 +45,35 @@ const SearchCompanyBox: React.FC = () => {
   const classes = useStyles()
   const history = useHistory()
 
-  const companyNameLink = (companyName: String) => {
+  const companyNameLink = (companyName: string) => {
     return (
-      <li>
-        <Link to={`/search/companies?keyword=${companyName}`} target="_blank" rel="noopener" className={classes.linkText}>
+      <li key={companyName}>
+        <Link
+          to={`/search/companies?keyword=${companyName}`}
+          target="_blank" rel="noopener"
+          className={classes.linkText}
+        >
           {companyName}
         </Link>
       </li>
     );
   }
 
-  const companyNameLinkList = (companyList: String[]) => {
+  const companyNameLinkList = (companyList: string[]) => {
     // APIからは偶数個のデータが返却される想定
-    let list1: String[] = companyList.slice(0, Math.floor(companyList.length / 2));
-    let list2: String[] = companyList.slice(Math.floor(companyList.length / 2), companyList.length);
+    let list1: string[] = companyList.slice(0, Math.floor(companyList.length / 2));
+    let list2: string[] = companyList.slice(Math.floor(companyList.length / 2), companyList.length);
 
     return (
       <Grid container className={classes.content}>
-        <Grid item xs={6}>
+        <Grid item xs={6} >
           <ul>
-            {list1.map((item: String) => companyNameLink(item))}
+            {list1.map((item: string) => companyNameLink(item))}
           </ul>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} >
           <ul>
-            {list2.map((item: String) => companyNameLink(item))}
+            {list2.map((item: string) => companyNameLink(item))}
           </ul>
         </Grid>
       </Grid>

@@ -7,7 +7,6 @@ import { Typography } from "@material-ui/core"
 import TextField from "@material-ui/core/TextField"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
-import CardHeader from "@material-ui/core/CardHeader"
 import Button from "@material-ui/core/Button"
 import Box from "@material-ui/core/Box"
 
@@ -62,7 +61,6 @@ const SignIn: React.FC = () => {
 
     try {
       const res = await signIn(data)
-      console.log(res)
 
       if (res.status === 200) {
         // 成功した場合はCookieに各値を格納

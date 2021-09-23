@@ -12,7 +12,7 @@ const footerDataLeft = [
   },
   {
     label: "スキルで探す",
-    href: "/",
+    href: "/skill",
   },
 
 ];
@@ -35,7 +35,9 @@ const footerDataRight = [
 
 const useStyles = makeStyles(() => ({
   footer: {
-    backgroundColor: "#4A69BD"
+    backgroundColor: "#4A69BD",
+    marginTop: 30,
+    paddingTop: 20,
   },
   footerMenu: {
     padding: "5px 25px",
@@ -49,7 +51,7 @@ export default function Footer() {
   const getFooterMenu = (footerData: { label: string, href: string }[]) => {
     return footerData.map(({ label, href }) => {
       return (
-        <Box className={footerMenu}>
+        <Box className={footerMenu} key={label}>
           <Link {
             ...{
               component: RouterLink,
@@ -67,7 +69,7 @@ export default function Footer() {
   }
 
   return <footer>
-    <Box bgcolor="text.secondary" color="White" marginTop={30} className={footer}>
+    <Box color="White" className={footer}>
       <Container maxWidth="lg">
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
