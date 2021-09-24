@@ -12,7 +12,7 @@ class Api::V1::CompaniesController < ApplicationController
     if params[:keyword].present?
       companies = Company.where(company_name: params[:keyword])
     else
-      companies = Company.order(created_at: :desc)
+      companies = Company.page(params[:page] ||= 1).per(10).order(created_at: :desc)
     end
     render json: { status: 200, companies: companies }
   end
