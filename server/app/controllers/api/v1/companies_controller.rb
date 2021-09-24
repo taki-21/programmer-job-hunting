@@ -2,15 +2,31 @@ class Api::V1::CompaniesController < ApplicationController
   #before_action :post_params, only: [:create]
 
   # TOPページに表示する会社
+  # def index
+  #   companies = Company.first(5)
+  #   render json: companies
+  # end
   def index
-    companies = Company.first(5)
-    render json: companies
+    if params[:keyword].present?
+      companies = Company.where(company_name: params[:keyword])
+    else
+      companies = Company.order(created_at: :desc)
+    end
+    render json: { status: 200, companies: companies }
   end
 
-  def search
-    companies = Company.page(params[:id] ||= 1).per(10).order('created_at ASC')
-    render json: companies
+  def pickup
+    companies = Company.order("RAND()").limit(5)
+    render json: { status: 200, companies: companies }
   end
+
+
+
+
+  # def search
+  #   companies = Company.page(params[:id] ||= 1).per(10).order('created_at ASC')
+  #   render json: companies
+  # end
 
   def create
     puts "@@"*20
