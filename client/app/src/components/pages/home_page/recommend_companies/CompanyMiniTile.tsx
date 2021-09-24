@@ -1,6 +1,8 @@
 import React from "react";
-import { Box } from "@chakra-ui/react"
-import { useHistory } from "react-router";
+import { makeStyles } from "@material-ui/core/styles"
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
+import CompanyImage from "images/company.jpg"
+import { Link } from "react-router-dom";
 
 type Props = {
   data: {
@@ -9,30 +11,33 @@ type Props = {
   };
 }
 
+const useStyles = makeStyles(() => ({
+  card: {
+    width: 150,
+    margin: "10px 10px",
+  },
+}))
+
 const CompanyMiniTile: React.FC<Props> = (props) => {
-  const history = useHistory();
+  const classes = useStyles();
 
   return (
-    <Box as="button" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" bg="White"
-      onClick={() => history.push(`/detail/${props.data.id}`)}
-    >
-
-      <Box p="6">
-        <Box
-          as="p"
-          lineHeight="tight"
-        >
-          会社ID：{props.data.id}
-        </Box>
-        <Box
-          as="h3"
-          fontWeight="semibold"
-          lineHeight="tight"
-        >
-          {props.data.companyName}
-        </Box>
-      </Box>
-    </Box>
+    <Card className={classes.card}>
+      <CardActionArea >
+        <Link to={`/detail/${props.data.id}`} target="_blank" rel="noopener">
+          <CardMedia
+            component="img"
+            image={CompanyImage}
+            alt="company image"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6" component="div">
+              {props.data.companyName}
+            </Typography>
+          </CardContent>
+        </Link>
+      </CardActionArea>
+    </Card>
   )
 }
 

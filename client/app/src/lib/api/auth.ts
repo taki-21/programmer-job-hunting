@@ -5,7 +5,7 @@ import { SignUpData, SignInData } from "interfaces/index"
 
 // サインアップ（新規アカウント作成）
 export const signUp = (data: SignUpData) => {
-  console.log(data)
+  //console.log(data)
   return client.post("auth", data)
 }
 

@@ -5,10 +5,11 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import Header from "components/layouts/Header"
 import Footer from "./Footer"
+import Banner from "./Banner"
 
 const useStyles = makeStyles(() => ({
   container: {
-    marginTop: "3rem"
+    marginBottom: "3rem"
   }
 }))
 
@@ -24,6 +25,7 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
     <>
       <Header />
       <main>
+        <Banner></Banner>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container justifyContent="center">
             <Grid item>
