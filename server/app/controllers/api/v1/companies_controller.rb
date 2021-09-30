@@ -17,6 +17,11 @@ class Api::V1::CompaniesController < ApplicationController
     render json: { status: 200, companies: companies }
   end
 
+  def search
+    companies = Company.search(params[:keyword]).page(params[:page] ||= 1).per(10).order(created_at: :desc)
+    render json: { status: 200, companies: companies }
+  end
+
   # 新規作成
   def create
     company = Company.new(company_params)
