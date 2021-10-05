@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_140859) do
+ActiveRecord::Schema.define(version: 2021_10_05_141539) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2021_10_05_140859) do
     t.string "company_num_of_emp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "company_teches", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "techcategory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_company_teches_on_company_id"
+    t.index ["techcategory_id"], name: "index_company_teches_on_techcategory_id"
   end
 
   create_table "incomes", charset: "utf8mb3", force: :cascade do |t|
@@ -112,4 +121,6 @@ ActiveRecord::Schema.define(version: 2021_10_05_140859) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_teches", "companies"
+  add_foreign_key "company_teches", "techcategories"
 end
