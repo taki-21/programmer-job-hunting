@@ -1,0 +1,2 @@
+class Techcategory < ApplicationRecord
+end
