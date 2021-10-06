@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_141539) do
+ActiveRecord::Schema.define(version: 2021_10_06_145908) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 2021_10_05_141539) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "techstack_categories", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "techstack_id", null: false
+    t.bigint "techcategory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["techcategory_id"], name: "index_techstack_categories_on_techcategory_id"
+    t.index ["techstack_id"], name: "index_techstack_categories_on_techstack_id"
+  end
+
   create_table "techstacks", charset: "utf8mb3", force: :cascade do |t|
     t.integer "company_id", null: false
     t.integer "user_id", null: false
@@ -123,4 +132,6 @@ ActiveRecord::Schema.define(version: 2021_10_05_141539) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_teches", "companies"
   add_foreign_key "company_teches", "techcategories"
+  add_foreign_key "techstack_categories", "techcategories"
+  add_foreign_key "techstack_categories", "techstacks"
 end
