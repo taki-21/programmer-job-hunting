@@ -23,22 +23,30 @@ const ReccomendCompanies: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return (
-    <div style={{ width: '100%' }}>
-      <Text as="h1" fontSize="25">おすすめの企業</Text>
-      <Grid container>
-        {
-          companies.map(
-            (item: Company) =>
-              <Grid item key={item.id}>
-                <CompanyTile data={item} />
-              </Grid>
-          )
-        }
-      </Grid>
-    </div >
+  if (companies.length > 0) {
+    return (
+      <div style={{ width: '100%' }}>
+        <Text as="h1" fontSize="25">おすすめの企業</Text>
 
-  )
+        <Grid container>
+          {
+            companies.map(
+              (item: Company) =>
+                <Grid item key={item.id}>
+                  <CompanyTile data={item} />
+                </Grid>
+            )
+          }
+        </Grid>
+      </div >
+
+    )
+  }
+
+  /// データを取得できなかった場合は何も返さない
+  return <></>
+
+
 }
 
 export default ReccomendCompanies
