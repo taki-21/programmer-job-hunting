@@ -1,56 +1,64 @@
 class Api::V1::CompaniesController < ApplicationController
-  #before_action :post_params, only: [:create]
+  before_action :set_company, only: [:show, :update, :destroy]
 
-  # TOPページに表示する会社
+  # TOPページに表示する会社（ランダムに5社）
+  def pickup
+    companies = Company.order("RAND()").limit(5)
+    render json: { status: 200, companies: companies }
+  end
+
+  # 会社一覧
   def index
-    companies = Company.first(5)
-    render json: companies
+    if params[:keyword].present?
+      companies = Company.where(company_name: params[:keyword])
+    else
+      companies = Company.page(params[:page] ||= 1).per(10).order(created_at: :desc)
+    end
+    render json: { status: 200, companies: companies }
   end
 
   def search
-    companies = Company.page(params[:id] ||= 1).per(10).order('created_at ASC')
-    render json: companies
+    companies = Company.search(params[:keyword]).page(params[:page] ||= 1).per(10).order(created_at: :desc)
+    render json: { status: 200, companies: companies }
   end
 
+  # 新規作成
   def create
-    puts "@@"*20
-    puts params
-    puts "@@"*20
-    @company = Company.create post_params
-    if @company.save!
-      render status: :created, json: {message: "create success"}
+    company = Company.new(company_params)
+    if company.save
+      render json: { status: 200, company: company }
     else
-      render status: :conflict, json: {message: "create failed"}
+      render json: { status: 500, message: "update failed" }
     end
   end
 
   # 会社詳細情報
   def show
-    @company = Company.find(params[:id])
     render json: @company
   end
 
+  # 会社情報更新
   def update
-    @company = Company.find(params[:id])
-    if @company.update(companies_params)
-      render status: :created, json: {message: "update success"}
+    if @company.update(company_params)
+      render json: {status: 200, company: @company }
     else
-      render status: :conflict, json: {message: "update failed"}
+      render json: { status: 500, message: "update failed" }
     end
   end
 
+  # 会社情報削除
   def destroy
-    Company.find(params[:id]).destroy
+    @company.destroy
   end
 
   private
 
-    def post_params
-      params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp,:company_image)
+    def set_company
+        @company = Company.find(params[:id])
     end
 
-    def companies_params
-      params.require(:companies).permit(:company_name, :company_overview,:company_address, :company_num_of_emp,:company_image)
+    def company_params
+      params.require(:company).permit(:company_name, :company_overview,:company_address, :company_num_of_emp, :company_image)
     end
 
 end
