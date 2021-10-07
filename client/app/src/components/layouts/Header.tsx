@@ -17,7 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 const headersData = [
   {
     label: "会社を探す",
-    href: "/search/1",
+    href: "/companies",
   },
   {
     label: "スキルで探す",

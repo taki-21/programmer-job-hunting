@@ -30,7 +30,7 @@ export interface User {
 export interface Company {
   id: number
   companyName: String
-  companyOverview: String
-  companyNumOfEmp: String
-  companyImage: File
+  companyOverview?: String
+  companyNumOfEmp?: String
+  companyImage?: File
 }
