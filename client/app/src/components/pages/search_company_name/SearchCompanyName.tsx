@@ -1,36 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { Text } from "@chakra-ui/layout";
 import CompanyCard from "components/widgets/CompanyCard"
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
+import { companyNameSearch } from "lib/api/company";
+import VoidImage from "images/undraw_void_3ggu.png";
 
+
+/// 会社名で検索する時に使用するページ
 const SearchCompanyName: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
-  const keyword: String = query.get('keyword') ?? "";
+  const page: string = query.get('page') ?? "";
+  const keyword: string = query.get('keyword') ?? "";
   const [companies, setCompanies] = useState([])
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const history = useHistory()
 
-  const getCompany = async () => {
-    // TODO: keywordの検索結果を取得
+  const getCompany = async (keyword: string, page: string) => {
 
-    var dummyData: any = [];
-    for (var i = 0; i < 10; i++) {
-      var dummyNum = i;
-      dummyData.push({
-        "id": i,
-        "companyName": "dummy" + dummyNum,
-        "companyOverview": "dummy" + dummyNum + "カンパニーは自社アプリケーション開発をメインとした会社です。時代に先駆けて新しい価値をユーザーに提供することを会社の理念としています。とてもアットホームな職場環境で、離職率も非常に低くなっております。",
-        "companyNumOfEmp": "dummy" + dummyNum,
-      });
-    }
+    companyNameSearch(keyword, page).then(
+      res => {
+        if (res.status === 200) {
+          setCompanies(res.data.companies);
+        }
+      }
+    )
 
-    setCompanies(dummyData);
   }
 
   useEffect(() => {
-    getCompany()
+    getCompany(keyword, page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (companies.length === 0) {
+    return (
+      <>
+        <Text as="h3">
+          お探しの会社は見つかりませんでした。
+        </Text>
+        <img
+          src={VoidImage}
+          alt="404 "
+        />
+      </>
+    );
+  }
 
   return (
     <>
