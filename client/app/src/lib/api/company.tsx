@@ -1,9 +1,9 @@
 import { Company } from "interfaces";
 import client from "lib/api/client"
 
-/// /: おすすめの会社情報を5件取得する
+/// (/) おすすめの会社情報を5件取得する
 export const reccomendCompany = () => {
-  return client.get("companies")
+  return client.get("recommended-companies")
 }
 
 export const searchCompany = (page: string) => {

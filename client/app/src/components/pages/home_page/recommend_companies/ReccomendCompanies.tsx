@@ -10,42 +10,36 @@ const ReccomendCompanies: React.FC = () => {
   const [companies, setCompanies] = useState([])
 
   /// apiからトップに表示する会社を取得する
-  const getCompany = async () => {
-    const res = await reccomendCompany()
-
-    if (res.status === 200) {
-      setCompanies(res.data)
-    }
-  }
-
   useEffect(() => {
-    getCompany()
+    reccomendCompany().then(
+      res => {
+        if (res.status === 200) {
+          setCompanies(res.data.companies);
+          console.log(companies);
+          console.log(res.data.companies);
+        }
+      }
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (companies.length > 0) {
-    return (
-      <div style={{ width: '100%' }}>
-        <Text as="h1" fontSize="25">おすすめの企業</Text>
+  return (
+    <div style={{ width: '100%' }}>
+      <Text as="h1" fontSize="25">おすすめの企業</Text>
 
-        <Grid container>
-          {
-            companies.map(
-              (item: Company) =>
-                <Grid item key={item.id}>
-                  <CompanyTile data={item} />
-                </Grid>
-            )
-          }
-        </Grid>
-      </div >
+      <Grid container>
+        {
+          companies.map(
+            (item: Company) =>
+              <Grid item key={item.id}>
+                <CompanyTile data={item} />
+              </Grid>
+          )
+        }
+      </Grid>
+    </div >
 
-    )
-  }
-
-  /// データを取得できなかった場合は何も返さない
-  return <></>
-
+  )
 
 }
 
