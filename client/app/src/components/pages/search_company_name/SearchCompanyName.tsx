@@ -11,28 +11,26 @@ import VoidImage from "images/undraw_void_3ggu.png";
 /// 会社名で検索する時に使用するページ
 const SearchCompanyName: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
-  const page: string = query.get('page') ?? "";
-  const keyword: string = query.get('keyword') ?? "";
+  const [page, setPage] = useState(query.get('page') ?? "")
+  const [keyword, setKeyword] = useState(query.get('keyword') ?? "");
   const [companies, setCompanies] = useState([])
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory()
 
-  const getCompany = async (keyword: string, page: string) => {
-
-    companyNameSearch(keyword, page).then(
-      res => {
-        if (res.status === 200) {
-          setCompanies(res.data.companies);
-        }
-      }
-    )
-
-  }
-
   useEffect(() => {
-    getCompany(keyword, page);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    ///  現在の　backではpage 
+    async function getCompanies() {
+      await companyNameSearch(keyword, page).then(
+        response => {
+          if (response.status === 200) {
+            setCompanies(response.data.companies);
+          }
+        }
+      );
+    }
+    getCompanies();
+  }, [keyword, page])
+
 
   if (companies.length === 0) {
     return (
@@ -43,6 +41,7 @@ const SearchCompanyName: React.FC = () => {
         <img
           src={VoidImage}
           alt="404 "
+          width={500}
         />
       </>
     );
