@@ -24,7 +24,7 @@ const SkillSearch: React.FC = () => {
       text += "フレームワーク：" + framework;
     }
 
-    if (positions.length !== 0) {
+    if (positions.length !== 1) {
       positionText += "職種："
       positions.forEach((val, index) => positionText += val + ",")
     }
