@@ -16,8 +16,10 @@ export const companyNameSearch = (keyword: string, page: string) => {
   return client.get("companies/search?keyword=" + keyword + "&page=" + page);
 }
 
-export const searchCompany = (page: string) => {
-  const getUrl: string = `search/${page}`;
+/// 全ての会社で探すページで使用する
+/// ページネーションを行うことができる
+export const searchCompany = (page: number) => {
+  const getUrl: string = `companies?page=${page}`;
   return client.get(getUrl)
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom"
+import { makeStyles, Theme } from "@material-ui/core/styles"
+import { useHistory } from "react-router-dom"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { searchCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
@@ -8,43 +9,36 @@ import { Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 
+const useStyles = makeStyles((theme: Theme) => ({
+
+  pagenation_center: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+}))
+
+/// 「全ての会社から探す」ページ。
+/// 引数としてpageを使用する
+/// TODO: APIから全ページ数を取得し、ページ数を可変にする
+///     - 取得できなかった場合のエラー処理 
 const CompanySearch: React.FC = () => {
-  const query = new URLSearchParams(useLocation().search);
-  const page: String = query.get('page') ?? "";
-  const [companies, setCompanies] = useState([])
+  const classes = useStyles()
+  const [page, setPage] = useState(1)
+  const [companies, setCompanies] = useState<Company[]>([])
   const history = useHistory()
 
-  const getCompany = async (page: String) => {
-    /*
-    const res = await searchCompany(page)
-
-    if (res.status === 200) {
-      console.log(res.data);
-      setCompanies(res.data)
-    }*/
-    var dummyData: any = [];
-    for (var i = 0; i < 10; i++) {
-      var dummyNum = page + i.toString();
-      dummyData.push({
-        "id": i,
-        "companyName": "dummy" + dummyNum,
-        "companyOverview": "dummy" + dummyNum + "カンパニーは自社アプリケーション開発をメインとした会社です。時代に先駆けて新しい価値をユーザーに提供することを会社の理念としています。とてもアットホームな職場環境で、離職率も非常に低くなっております。",
-        "companyNumOfEmp": "dummy" + dummyNum,
-      });
-    }
-
-    setCompanies(dummyData);
-  }
-
-  const pageTransion = (page: String) => {
-    history.push(`/companies?page=${page}`);
-    getCompany(page.toString());
-  }
 
   useEffect(() => {
-    getCompany(page)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    async function getCompanies() {
+      const response = await searchCompany(page);
+      if (response.status === 200) {
+        history.push(`/companies?page=${page}`)
+        console.log(response.data.companies);
+        setCompanies(response.data.companies)
+      }
+    }
+    getCompanies();
+  }, [page, history]);
 
   return (
     <>
@@ -52,7 +46,9 @@ const CompanySearch: React.FC = () => {
       <List>
         {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}></CompanyCard>) : null}
       </List>
-      <Pagination count={10} onChange={(_, page) => pageTransion(page.toString())}></Pagination>
+      <div className={classes.pagenation_center}>
+        <Pagination count={10} onChange={(_, page) => setPage(page)}></Pagination>
+      </div>
     </>
   )
 }
