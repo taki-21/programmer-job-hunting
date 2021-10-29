@@ -4,6 +4,7 @@ import { Text } from "@chakra-ui/layout";
 import CompanyCard from "../../widgets/CompanyCard";
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
+import { skillSearchCompany } from "lib/api/company";
 
 const SkillSearch: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
@@ -39,31 +40,14 @@ const SkillSearch: React.FC = () => {
     );
   }
 
-  const getCompany = async (page: string) => {
-
-    /*
-    const res = await searchCompany(page)
-
-    if (res.status === 200) {
-      console.log(res.data);
-      setCompanies(res.data)
-    }*/
-    var dummyData: any = [];
-    for (var i = 0; i < 10; i++) {
-      var dummyNum = lang + i.toString();
-      dummyData.push({
-        "id": i,
-        "companyName": "dummy" + dummyNum,
-        "companyOverview": "dummy" + dummyNum + "カンパニーは自社アプリケーション開発をメインとした会社です。時代に先駆けて新しい価値をユーザーに提供することを会社の理念としています。とてもアットホームな職場環境で、離職率も非常に低くなっております。",
-        "companyNumOfEmp": "dummy" + dummyNum,
-      });
-    }
-
-    setCompanies(dummyData);
-  }
-
   useEffect(() => {
-    getCompany(page)
+    skillSearchCompany(lang).then(
+      res => {
+        if (res.status === 200) {
+          setCompanies(res.data.companies);
+        }
+      }
+    )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

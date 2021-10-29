@@ -23,6 +23,11 @@ export const searchCompany = (page: number) => {
   return client.get(getUrl)
 }
 
+export const skillSearchCompany = (lang:string) => {
+  const getUrl: string = `companies?lang=${lang}`;
+  return client.get(getUrl)
+}
+
 export const companyDetail = (companyId: string) => {
   const getUrl: string = `companies/${companyId}`;
   return client.get(getUrl);
