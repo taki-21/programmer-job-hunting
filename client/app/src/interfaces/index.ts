@@ -16,6 +16,7 @@ export interface SignInData {
 
 // ユーザー
 export interface User {
+  name:string
   userId: number
   email: string
   password: string
@@ -35,4 +36,22 @@ export interface Company {
   companyNumOfEmp?: string
   companyImage?: File
   techCategoryId: number
+}
+
+/// TechStackで使用
+export interface TechStack{
+  techStackId: number
+  userId:number
+  companyId:number
+  techCategoryId: number
+  body: string
+}
+
+/// TechStackで使用
+export interface Income{
+  incomeId: number
+  userId:number
+  income:string
+  techCategoryId: number
+  body: string
 }

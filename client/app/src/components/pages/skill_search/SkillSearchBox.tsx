@@ -47,7 +47,6 @@ const SkillSearchBox: React.FC = () => {
   const [networkChecked, setNetworkChecked] = React.useState(false);
   const [otherChecked, setOtherChecked] = React.useState(false);
   const [lang, setLang] = React.useState('');
-  const [framework, setFramework] = React.useState('');
   const history = useHistory()
 
 
@@ -56,9 +55,6 @@ const SkillSearchBox: React.FC = () => {
     let query = "/search/skill?";
     if (lang !== "") {
       query += "lang=" + lang + "&";
-    }
-    if (framework !== "") {
-      query += "framework=" + framework + "&";
     }
     query += "positions=";
     // この部分、配列にするなどしてリファクタ必須、、、汚い、、
@@ -86,10 +82,6 @@ const SkillSearchBox: React.FC = () => {
 
   const handleLangChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLang(event.target.value as string);
-  };
-
-  const handleFrameworkChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setFramework(event.target.value as string);
   };
 
 
@@ -134,29 +126,6 @@ const SkillSearchBox: React.FC = () => {
                 <MenuItem value={"C#"}>C#</MenuItem>
               </Select>
             </FormControl>
-          </CardContent>
-          <CardContent >
-            <Typography variant="h6">
-              フレームワークで絞る
-            </Typography>
-            <div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">フレームワーク</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={framework}
-                  onChange={handleFrameworkChange}
-                >
-                  <MenuItem value={"Rails"}>Rails</MenuItem>
-                  <MenuItem value={"React"}>React</MenuItem>
-                  <MenuItem value={"Flask"}>Flask</MenuItem>
-                  <MenuItem value={"Django"}>Django</MenuItem>
-                  <MenuItem value={"Flutter"}>Flutter</MenuItem>
-
-                </Select>
-              </FormControl>
-            </div>
           </CardContent>
           <CardContent>
             <Typography variant="h6">
