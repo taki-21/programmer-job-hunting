@@ -12,6 +12,19 @@ services:
     ports:
       - 3306:3306
 
+  minio:
+    image: minio/minio:latest
+    command: ['server', '/data', '--console-address', ':9001'] # --console-address オプションの追加
+    ports:
+      - 9000:9000
+      - 9001:9001 # コンソール用のポートフォワード設定追加
+    volumes:
+      - minio:/data
+    # command: server /data
+    environment:
+      MINIO_ROOT_USER: minio # 元 MINIO_ACCESS_KEY
+      MINIO_ROOT_PASSWORD: miniosecret # 元 MINIO_SECRET_KEY
+
   api:
     build:
       context: ./server/
@@ -41,3 +54,5 @@ services:
 
 volumes:
   mysql-data:
+  minio:
+    driver: local
