@@ -6,6 +6,7 @@
 - [TypeScriptの型入門](https://qiita.com/uhyo/items/e2fdef2d3236b9bfe74a)
 
 ### React(Routing)
+- [react-router-dom](https://qiita.com/takeshisakuma/items/823d035919b89020f4e1)
 - [react-routerに入門する](https://qiita.com/NanayaKto/items/95aecae94837ccac1f77)
 - [React Router](https://reactrouter.com/web/guides/quick-start)
   - SPAにおけるルーティング：「DOMの動的な書き換えによってページ遷移を擬似的に実現するとともに、ブラウザのセッション履歴をそれに同期させる」

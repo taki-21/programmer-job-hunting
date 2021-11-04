@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom"
 import { Text } from "@chakra-ui/layout";
-import CompanyCard from "../../widgets/CompanyCard";
+import CompanyCard from "../../components/CompanyCard";
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { skillSearchCompany } from "lib/api/company";
