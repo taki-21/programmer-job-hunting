@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import NotFoundImage from "images/notfound.png";
+import notFoundImage from "images/notfound.png";
 
 const NotFound: React.FC = () => {
 
@@ -13,7 +13,7 @@ const NotFound: React.FC = () => {
         お探しのページは見つかりませんでした。
       </Typography>
       <img
-        src={NotFoundImage}
+        src={notFoundImage}
         alt="404 "
       />
     </>
