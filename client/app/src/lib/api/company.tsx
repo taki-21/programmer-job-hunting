@@ -24,7 +24,7 @@ export const searchCompany = (page: number) => {
 }
 
 export const skillSearchCompany = (lang:string) => {
-  const getUrl: string = `companies?lang=${lang}`;
+  const getUrl: string = `skill-search?lang=${lang}`;
   return client.get(getUrl)
 }
 

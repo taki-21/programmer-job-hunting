@@ -10,8 +10,6 @@ const SkillSearch: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
   const page: string = query.get('page') ?? "";
   const lang: string = query.get('lang') ?? "";
-  const framework: string = query.get('framework') ?? "";
-  const positions: string[] = query.getAll('positions') ?? [""]
   const [companies, setCompanies] = useState([]);
 
   const createHeaderTexts = () => {
@@ -19,19 +17,8 @@ const SkillSearch: React.FC = () => {
     let text: string = "";
     let positionText: string = "";
     if (lang !== "") {
-      text += "言語：" + lang + ",  ";
+      text += "言語：" + lang ;
     }
-    if (framework !== "") {
-      text += "フレームワーク：" + framework;
-    }
-
-    if (positions.length !== 1) {
-      positionText += "職種："
-      positions.forEach((val, index) => positionText += val + ",")
-    }
-    // もっと綺麗な方法ありそう
-    positionText = positionText.slice(0, positionText.length - 1);
-
     return (
       <>
         <Text as="h6">{text}</Text>
@@ -44,6 +31,7 @@ const SkillSearch: React.FC = () => {
     skillSearchCompany(lang).then(
       res => {
         if (res.status === 200) {
+          console.log(res.data);
           setCompanies(res.data.companies);
         }
       }

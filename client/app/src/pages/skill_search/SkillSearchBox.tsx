@@ -39,13 +39,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 // 「開発言語で絞る」、「フレームワークで絞る」、「職種で絞る」
 const SkillSearchBox: React.FC = () => {
   const classes = useStyles()
-  // TODO: 変数群のリファクタリング
-  const [frontendChecked, setFrontendChecked] = React.useState(false);
-  const [backendChecked, setBackendChecked] = React.useState(false);
-  const [fullStackChecked, setFullStackChecked] = React.useState(false);
-  const [infraChecked, setInfraCheckod] = React.useState(false);
-  const [networkChecked, setNetworkChecked] = React.useState(false);
-  const [otherChecked, setOtherChecked] = React.useState(false);
   const [lang, setLang] = React.useState('');
   const history = useHistory()
 
@@ -54,27 +47,8 @@ const SkillSearchBox: React.FC = () => {
     // クエリを作成して画面遷移する。
     let query = "/search/skill?";
     if (lang !== "") {
-      query += "lang=" + lang + "&";
+      query += "lang=" + lang ;
     }
-    query += "positions=";
-    // この部分、配列にするなどしてリファクタ必須、、、汚い、、
-    if (frontendChecked) {
-      query += "frontend,"
-    }
-    if (backendChecked) {
-      query += "backend,";
-    }
-    if (fullStackChecked) {
-      query += "fullstack,"
-    } if (infraChecked) {
-      query += "infra,";
-    } if (networkChecked) {
-      query += "network,";
-    }
-    if (otherChecked) {
-      query += "other,"
-    }
-    query = query.slice(0, query.length - 1);
     history.push(query);
   }
 
@@ -128,49 +102,6 @@ const SkillSearchBox: React.FC = () => {
             </FormControl>
           </CardContent>
           <CardContent>
-            <Typography variant="h6">
-              職種・ポジションで絞る(複数選択可)
-            </Typography>
-            <div>
-              <FormGroup row>
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setFrontendChecked(event.target.checked)} />}
-                  label="フロントエンド"
-                  className={classes.Checkbox}
-                />
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setBackendChecked(event.target.checked)} />}
-                  label="バックエンド"
-                  className={classes.Checkbox}
-                />
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setFullStackChecked(event.target.checked)} />}
-                  label="フルスタック"
-                  className={classes.Checkbox}
-                />
-              </FormGroup>
-            </div>
-            <div>
-              <FormGroup row>
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setInfraCheckod(event.target.checked)} />}
-                  label="インフラ"
-                  className={classes.Checkbox}
-                />
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setNetworkChecked(event.target.checked)} />}
-                  label="ネットワーク"
-                  className={classes.Checkbox}
-                />
-                <FormControlLabel
-                  control={<Checkbox onChange={(event) => setOtherChecked(event.target.checked)} />}
-                  label="その他"
-                  className={classes.Checkbox}
-                />
-              </FormGroup>
-            </div>
-
-
             <div className={classes.submitButton}>
               <Button
                 variant="contained"
@@ -181,7 +112,6 @@ const SkillSearchBox: React.FC = () => {
                 検索
               </Button>
             </div>
-
           </CardContent>
         </Card>
       </form>
