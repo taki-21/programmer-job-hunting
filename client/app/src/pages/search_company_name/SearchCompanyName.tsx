@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Text } from "@chakra-ui/layout";
-import CompanyCard from "components/widgets/CompanyCard"
+import CompanyCard from "components/CompanyCard"
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { companyNameSearch } from "lib/api/company";

@@ -16,21 +16,42 @@ export interface SignInData {
 
 // ユーザー
 export interface User {
-  id: number
-  uid: string
-  provider: string
+  name:string
+  userId: number
   email: string
-  name: string
-  nickname?: string
-  image?: string
-  allowPasswordChange: boolean
+  password: string
+  newgraOrMidcar: string
+  engCategory: string
+  userImage: File
+  isAdmin: boolean
+  isRecruting: boolean
 }
 
 // 会社情報の型を定義 
 export interface Company {
   id: number
-  companyName: String
-  companyOverview?: String
-  companyNumOfEmp?: String
+  companyName: string
+  companyAddress: string
+  companyOverview?: string
+  companyNumOfEmp?: string
   companyImage?: File
+  techCategoryId: number
+}
+
+/// TechStackで使用
+export interface TechStack{
+  techStackId: number
+  userId:number
+  companyId:number
+  techCategoryId: number
+  body: string
+}
+
+/// TechStackで使用
+export interface Income{
+  incomeId: number
+  userId:number
+  income:string
+  techCategoryId: number
+  body: string
 }

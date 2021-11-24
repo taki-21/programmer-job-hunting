@@ -22,6 +22,27 @@ class Api::V1::CompaniesController < ApplicationController
     render json: { status: 200, companies: companies }
   end
 
+  def skillSearch
+    print "================================================================"
+    print "hoge"
+    # 該当する言語を使用している会社を抽出する
+    skillId = Techcategory.where(category_name: params[:lang])
+
+    if skillId.nil?
+      render json: {status: 404, message: 'company not found'}
+      return 
+    end
+
+    print "hogehoge"
+    print "================================================================"
+
+    # Companyの中から該当する会社を取り出す
+    companies = Company.where(id: skillId.ids)
+    
+    # 取得したデータの中からIdを取り出し、それを元にして会社情報を取得する
+    render json: { status: 200 , companies: companies }
+  end
+
   # 新規作成
   def create
     company = Company.new(company_params)

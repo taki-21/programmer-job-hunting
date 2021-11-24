@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { searchCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
-import CompanyCard from "../../widgets/CompanyCard";
+import CompanyCard from "../../components/CompanyCard";
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
