@@ -1,21 +1,21 @@
 import React, { useState, useEffect, createContext } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import CommonLayout from "components/layouts/CommonLayout"
-import Home from "components/pages/home_page/Home"
-import Registration from "components/pages/my_page/registration/Registration"
-import MyPage from "components/pages/my_page/MyPage"
+import CommonLayout from "components/CommonLayout"
+import Home from "pages/home/Home"
+import Registration from "pages/my_page/components/Registration"
+import MyPage from "pages/my_page/MyPage"
 
 import { getCurrentUser } from "lib/api/auth"
 import { User } from "interfaces/index"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import CompanySearch from "components/pages/company_search/CompanySearch"
-import CompanyDetail from "components/pages/company_detail/CompanyDetail"
-import SignUp from "components/pages/my_page/auth/SignUp"
-import SkillSearch from "components/pages/skill_search/SkillSearch"
-import NotFound from "components/pages/404/404"
-import SearchCompanyName from "components/pages/search_company_name/SearchCompanyName"
-import SkillSearchBox from "components/pages/skill_search/SkillSearchBox"
+import CompanySearch from "pages/company_search/CompanySearch"
+import CompanyDetail from "pages/detail/CompanyDetail"
+import SignUp from "pages/my_page/components/SignUp"
+import SkillSearch from "pages/skill_search/SkillSearch"
+import NotFound from "pages/404/404"
+import SearchCompanyName from "pages/search_company_name/SearchCompanyName"
+import SkillSearchBox from "pages/skill_search/SkillSearchBox"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({} as {

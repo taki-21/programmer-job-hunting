@@ -1,9 +1,9 @@
 import { Divider } from "@material-ui/core"
 import React from "react"
-import ReccomendCompanies from "./recommend_companies/ReccomendCompanies"
-import SearchCompanyBox from "./search_company_box/SearchCompanyBox"
+import ReccomendCompanies from "./components/ReccomendCompanies"
+import SearchCompanyBox from "./components/SearchCompanyBox"
 import { makeStyles } from "@material-ui/core/styles"
-import SearchTile from "./search_tile/SearchTile"
+import SearchTile from "./components/SearchTile"
 
 const useStyles = makeStyles(() => ({
   contentDivider: {

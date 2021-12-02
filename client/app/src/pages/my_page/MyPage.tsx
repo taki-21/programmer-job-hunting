@@ -1,8 +1,8 @@
 import React, { useContext } from "react"
 import { AuthContext } from "App"
-import SignIn from "components/pages/my_page/auth/SignIn"
-import SignOut from "./auth/SignOut"
-import Registration from "./registration/Registration"
+import SignIn from "pages/my_page/components/SignIn"
+import SignOut from "./components/SignOut"
+import Registration from "./components/Registration"
 
 
 // マイページ
