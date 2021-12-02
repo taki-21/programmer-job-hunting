@@ -30,7 +30,7 @@ class Api::V1::CompaniesController < ApplicationController
 
     if skillId.nil?
       render json: {status: 404, message: 'company not found'}
-      return 
+      return
     end
 
     print "hogehoge"
@@ -38,13 +38,16 @@ class Api::V1::CompaniesController < ApplicationController
 
     # Companyの中から該当する会社を取り出す
     companies = Company.where(id: skillId.ids)
-    
+
     # 取得したデータの中からIdを取り出し、それを元にして会社情報を取得する
     render json: { status: 200 , companies: companies }
   end
 
   # 新規作成
   def create
+    puts("params", params)
+    puts("company_params", company_params)
+    # company_params = {"company_name": "abc","company_overview": "abc","company_address": "aaa","company_num_of_emp": "100"}
     company = Company.new(company_params)
     if company.save
       render json: { status: 200, company: company }
@@ -79,7 +82,8 @@ class Api::V1::CompaniesController < ApplicationController
     end
 
     def company_params
+      # params.permit(:company_name, :company_overview,:company_address, :company_num_of_emp, :company_image)
+      # params.require(:company).permit(:company_name, :company_overview,:company_address, :company_num_of_emp)
       params.require(:company).permit(:company_name, :company_overview,:company_address, :company_num_of_emp, :company_image)
     end
-
 end
