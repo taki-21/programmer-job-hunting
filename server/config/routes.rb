@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         collection do
           get :search
         end
+        resources :likes
       end
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations'
