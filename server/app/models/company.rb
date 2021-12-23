@@ -1,12 +1,13 @@
 class Company < ApplicationRecord
   has_one_attached :company_image
-  has_many :users
+  belongs_to :user
   has_many :techstacks, dependent: :destroy
   has_many :incomes, dependent: :destroy
   has_many :welfares, dependent: :destroy
   has_many :selections, dependent: :destroy
   has_many :company_teches
   has_many :techcategories, through: :company_teches
+  has_many :likes
 
 
   validates :company_name, presence: true, length: {maximum: 255}, uniqueness: true
@@ -20,7 +21,7 @@ class Company < ApplicationRecord
         Company.all
       end
     end
-  
+
   # まずはtechCategoryテーブルから該当する技術のidを取得
   # -> 中間テーブルからそのスキルを持つ会社のIDを取得
   # -> 会社のリストを返却する
