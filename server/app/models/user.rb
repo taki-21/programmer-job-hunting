@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   validates :name, presence: true, length: {minimum:3, maximum:50}
-  validates :email,presence: true, length: {maximum: 255}, 
+  validates :email,presence: true, length: {maximum: 255},
                   format: { with: VALID_EMAIL_REGEX },
                   uniqueness: { case_sensitive: false }
-  
+
 end
