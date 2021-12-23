@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_152655) do
+ActiveRecord::Schema.define(version: 2021_12_23_153711) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 2021_12_23_152655) do
     t.string "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "likes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_likes_on_company_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "selections", charset: "utf8mb3", force: :cascade do |t|
@@ -143,6 +152,8 @@ ActiveRecord::Schema.define(version: 2021_12_23_152655) do
   add_foreign_key "companies", "users"
   add_foreign_key "company_teches", "companies"
   add_foreign_key "company_teches", "techcategories"
+  add_foreign_key "likes", "companies"
+  add_foreign_key "likes", "users"
   add_foreign_key "techstack_categories", "techcategories"
   add_foreign_key "techstack_categories", "techstacks"
 end
