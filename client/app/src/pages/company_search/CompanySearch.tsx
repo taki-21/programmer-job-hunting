@@ -44,10 +44,10 @@ const CompanySearch: React.FC = () => {
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}></CompanyCard>) : null}
+        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}/>) : null}
       </List>
       <div className={classes.pagenation_center}>
-        <Pagination count={10} onChange={(_, page) => setPage(page)}></Pagination>
+        <Pagination count={10} onChange={(_, page) => setPage(page)}/>
       </div>
     </>
   )

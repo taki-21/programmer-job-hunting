@@ -33,7 +33,7 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
     <body>
       <div className={classes.body}>
         <Header/>
-        <Banner></Banner>
+        <Banner/>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container justifyContent="center">
             <Grid item>
@@ -42,7 +42,7 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
           </Grid>
         </Container>
         <div className={classes.footer}>
-        <Footer></Footer>
+        <Footer/>
         </div>
       </div>
     </body>

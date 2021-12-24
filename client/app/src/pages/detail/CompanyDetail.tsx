@@ -39,7 +39,7 @@ const CompanyDetail: React.FC<PageProps> = props => {
           <CompanyHeader/>
         </CompanyContext.Provider>
       </>
-      : <NotFound></NotFound>
+      : <NotFound/>
   )
 }
 

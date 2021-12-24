@@ -47,7 +47,7 @@ const SkillSearch: React.FC = () => {
         {
           companies.length !== 0
             ? companies.map((company: Company) =>
-              <CompanyCard key={company.id} data={company}></CompanyCard>
+              <CompanyCard key={company.id} data={company}/>
             )
             : null
         }
