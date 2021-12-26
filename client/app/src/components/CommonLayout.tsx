@@ -10,8 +10,16 @@ import Banner from "./Banner"
 const useStyles = makeStyles(() => ({
   container: {
     marginBottom: "3rem"
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh"
+  },
+  footer:{
+    marginTop: "auto"
   }
-}))
+}));
 
 interface CommonLayoutProps {
   children: React.ReactElement
@@ -22,10 +30,10 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
   const classes = useStyles()
 
   return (
-    <>
-      <Header />
-      <main>
-        <Banner></Banner>
+    <body>
+      <div className={classes.body}>
+        <Header/>
+        <Banner/>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container justifyContent="center">
             <Grid item>
@@ -33,9 +41,11 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
             </Grid>
           </Grid>
         </Container>
-      </main>
-      <Footer></Footer>
-    </>
+        <div className={classes.footer}>
+        <Footer/>
+        </div>
+      </div>
+    </body>
   )
 }
 

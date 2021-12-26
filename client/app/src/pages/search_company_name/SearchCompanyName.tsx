@@ -52,7 +52,7 @@ const SearchCompanyName: React.FC = () => {
     <>
       <Text as="h1" fontSize="25">{keyword}での検索結果</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}></CompanyCard>) : null}
+        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}/>) : null}
       </List>
     </>
   )

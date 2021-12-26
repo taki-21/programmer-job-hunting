@@ -26,7 +26,7 @@ const Home: React.FC = () => {
       <SearchCompanyBox>
       </SearchCompanyBox>
       <Divider className={classes.contentDivider} />
-      <SearchTile></SearchTile>
+      <SearchTile/>
       <Divider className={classes.contentDivider} />
     </>
   )
