@@ -6,12 +6,10 @@ class Api::V1::LikesController < ApplicationController
   end
 
   def create
-    Like.create(user_id: current_user.id, company_id: params[:id])
-    # redirect_to companys_path
+    Like.create(user_id: params[:user_id], company_id: params[:company_id])
   end
 
   def destroy
-    Like.find_by(user_id: current_user.id, company_id: params[:id]).destroy
-    # redirect_to companys_path
+    Like.find_by(user_id: params[:user_id], company_id: params[:company_id]).destroy
   end
 end
