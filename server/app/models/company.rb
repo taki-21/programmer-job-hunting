@@ -26,7 +26,7 @@ class Company < ApplicationRecord
   # まずはtechCategoryテーブルから該当する技術のidを取得
   # -> 中間テーブルからそのスキルを持つ会社のIDを取得
   # -> 会社のリストを返却する
-  def self.skillSearch(skill)
+  def self.skill_search(skill)
     if skill != ''
       Techcategory.join(:company_teches).join(:companies).where(['category_name', "%#{skill}%"])
     else
