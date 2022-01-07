@@ -1,5 +1,12 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::V1::Auth::SessionsControllerTest < ActionDispatch::IntegrationTest
-  
+module Api
+  module V1
+    module Auth
+      class SessionsControllerTest < ActionDispatch::IntegrationTest
+      end
+    end
+  end
 end

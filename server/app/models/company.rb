@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Company < ApplicationRecord
   has_one_attached :company_image
   belongs_to :user
@@ -26,7 +28,7 @@ class Company < ApplicationRecord
   # -> 会社のリストを返却する
   def self.skillSearch(skill)
     if skill != ''
-      Techcategory.join(:company_teches).join(:companies).where(['category_name', '%#{skill}%'])
+      Techcategory.join(:company_teches).join(:companies).where(['category_name', "%#{skill}%"])
     else
       Company.per(10).order(created_at: :desc)
     end

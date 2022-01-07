@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  validates :name, presence: true, length: {minimum:3, maximum:50}
-  validates :email,presence: true, length: {maximum: 255}, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
   has_many :companies
   has_many :likes
-
 end

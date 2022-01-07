@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get '/recommended-companies',to: 'companies#pickup'
+      get '/recommended-companies', to: 'companies#pickup'
       get '/skill-search', to: 'companies#skillSearch'
       resources :companies do
         collection do

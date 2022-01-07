@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Techcategory < ApplicationRecord
   has_many :company_teches
   has_many :companies, through: :company_teches

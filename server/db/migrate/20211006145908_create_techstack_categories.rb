@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTechstackCategories < ActiveRecord::Migration[6.1]
   def change
     create_table :techstack_categories do |t|
