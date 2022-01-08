@@ -1,27 +1,32 @@
-class Api::V1::TechstacksController < ApplicationController
+# frozen_string_literal: true
 
-    def index
+module Api
+  module V1
+    class TechstacksController < ApplicationController
+      def index
         techstacks = Techstack.order(created_at: :desc)
-        render json: {status: 200, techstacks: techstacks}
-    end
+        render json: { status: 200, techstacks: techstacks }
+      end
 
-    def show
+      def show
         techstack = Techstack.where(company_id: params[:id])
-        render json: {status: 200, techstack: techstack}
-    end
+        render json: { status: 200, techstack: techstack }
+      end
 
-    def create
+      def create
         techstack = Techstack.new(techstack_params)
         if techstack.save
-            render json: {status: 200, techstack: techstack}
+          render json: { status: 200, techstack: techstack }
         else
-            render jdon: {status: 500, message: "作成に失敗しました"}
+          render jdon: { status: 500, message: '作成に失敗しました' }
         end
-    end
+      end
 
-    private
+      private
 
-    def techstack_params
+      def techstack_params
         params.permit(:company_id, :user_id, :tech_category, :content)
+      end
     end
+  end
 end

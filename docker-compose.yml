@@ -64,6 +64,15 @@ services:
     command: sh -c "cd app && yarn install && yarn start"
     ports:
       - "4000:3000"
+  
+  # コード補完
+  solargraph:
+    build: ./server/
+    command: bundle exec solargraph socket --host=0.0.0.0 --port=7658
+    volumes:
+      - ./server:/app
+    ports:
+      - "8091:7658"
 
 volumes:
   mysql-data:

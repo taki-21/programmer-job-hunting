@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class UserSigninTestTest < ActionDispatch::IntegrationTest
-  
-
-  test "signin after signup" do
-    assert_difference "User.count" do
+  test 'signin after signup' do
+    assert_difference 'User.count' do
       post api_v1_user_registration_path, params: {
         user: {
-          name: "signup test",
-          email: "signup@gmail.com",
-          password: "password",
-          password_confirmation: "password"
+          name: 'signup test',
+          email: 'signup@gmail.com',
+          password: 'password',
+          password_confirmation: 'password'
         }
       }
     end
@@ -18,20 +18,17 @@ class UserSigninTestTest < ActionDispatch::IntegrationTest
 
     # サインアップ後に同じ情報を用いてログインできるか調べる
     post api_v1_user_session_path, params: {
-      email: "signup@gmail.com",
-      password: "password",
+      email: 'signup@gmail.com',
+      password: 'password'
     }
     assert_response :ok
-
   end
 
-  test "signin with valid email/invalid password" do
+  test 'signin with valid email/invalid password' do
     post api_v1_user_session_path, params: {
-      email: "signup@gmail.com",
-      password: "wrong_password",
+      email: 'signup@gmail.com',
+      password: 'wrong_password'
     }
     assert_response :unauthorized
   end
-
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCompanyTeches < ActiveRecord::Migration[6.1]
   def change
     create_table :company_teches do |t|

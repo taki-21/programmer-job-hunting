@@ -1,26 +1,32 @@
-class Api::V1::IncomesController < ApplicationController
-    def index
+# frozen_string_literal: true
+
+module Api
+  module V1
+    class IncomesController < ApplicationController
+      def index
         incomes = Income.order(created_at: :desc)
-        render json: {status: 200, incomes: incomes}
-    end
+        render json: { status: 200, incomes: incomes }
+      end
 
-    def show
+      def show
         income = Income.where(company_id: params[:id])
-        render json: {status: 200, income: income}
-    end
+        render json: { status: 200, income: income }
+      end
 
-    def create
+      def create
         income = Income.new(income_params)
         if income.save
-            render json: {status: 200, income: income}
+          render json: { status: 200, income: income }
         else
-            render jdon: {status: 500, message: "作成に失敗しました"}
+          render jdon: { status: 500, message: '作成に失敗しました' }
         end
-    end
+      end
 
-    private
+      private
 
-    def income_params
+      def income_params
         params.permit(:company_id, :user_id, :income, :content)
+      end
     end
+  end
 end
