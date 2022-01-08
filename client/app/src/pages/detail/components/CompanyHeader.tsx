@@ -7,7 +7,7 @@ const CompanyHeader: React.FC = () => {
   // contextをうまく使えていないので、来週までにベストプラクティスを探る
   const company = useContext(CompanyContext);
 
-  if(company != null ){
+  if(company !== null ){
     return (
       <>
         <Typography variant="h4" gutterBottom>

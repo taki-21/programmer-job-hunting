@@ -32,7 +32,7 @@ const CompanyDetail: React.FC<PageProps> = props => {
   }, [])
 
   return (
-    isSuccess && detailData != undefined ?
+    isSuccess && detailData !== undefined ?
       <>
         <CompanyContext.Provider value={detailData}>
           <CompanyHeader/>
