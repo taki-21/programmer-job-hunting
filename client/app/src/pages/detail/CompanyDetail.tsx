@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
-import { Typography } from "@material-ui/core";
+import React, { useState, useEffect, createContext } from "react";
 import { companyDetail } from "lib/api/company";
 import { RouteComponentProps } from 'react-router-dom'
 import NotFound from "../404/404";

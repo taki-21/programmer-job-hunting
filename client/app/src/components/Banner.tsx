@@ -1,23 +1,20 @@
 import React from "react";
 import BannerImage from "images/banner.png";
-import { Link } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import { CardActionArea, CardMedia, Grid } from "@material-ui/core";
 
-
 const useStyles = makeStyles(() => ({
-
   banner: {
     padding: "10px 0px",
     background: "#EDF2F7",
     width: "100%",
     marginBottom: "20px",
-  }
-}))
-
+  },
+}));
 
 const Banner: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <>
@@ -36,6 +33,6 @@ const Banner: React.FC = () => {
       </Grid>
     </>
   );
-}
+};
 
-export default Banner
+export default Banner;

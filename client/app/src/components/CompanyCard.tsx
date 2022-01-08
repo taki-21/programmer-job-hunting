@@ -3,41 +3,40 @@ import { Company } from "interfaces";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
-import { makeStyles, Theme } from "@material-ui/core/styles"
-import DummyLogo from 'images/Icon-512.png';
-
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import DummyLogo from "images/Icon-512.png";
 
 type Props = {
-  data: Company
-}
+  data: Company;
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardContentText: {
-    padding: "5px 20px"
+    padding: "5px 20px",
   },
   card: {
     padding: theme.spacing(2),
-    width: 500
+    width: 500,
   },
   image: {
     width: "75px",
     height: "75px",
-    margin: "10px 15px"
+    margin: "10px 15px",
   },
   companyOverviewText: {
     display: "block",
     component: "span",
     variant: "body2",
-    color: "textPrimary"
+    color: "textPrimary",
   },
   companyNameText: {
     display: "block",
-    fontSize: "23px"
-  }
-}))
+    fontSize: "23px",
+  },
+}));
 
 const CompanyCard: React.FC<Props> = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
   let companyOverview: String = props.data.companyOverview ?? "";
   // テキストの長さを制限
   if (companyOverview.length > 50) {
@@ -56,27 +55,24 @@ const CompanyCard: React.FC<Props> = (props) => {
 
           <Grid item xs={12} sm container>
             <Grid item xs>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 広告・マスコミ | テレビ・ラジオ
               </Typography>
               <Link
                 to={`/detail/${props.data.id}`}
                 className={classes.companyNameText}
-              >{props.data.companyName}</Link>
-              <Typography
-                className={classes.companyOverviewText}
               >
+                {props.data.companyName}
+              </Link>
+              <Typography className={classes.companyOverviewText}>
                 {companyOverview}
               </Typography>
             </Grid>
           </Grid>
         </Grid>
       </Card>
-    </ListItem >
-  )
-}
+    </ListItem>
+  );
+};
 
-export default CompanyCard
+export default CompanyCard;
