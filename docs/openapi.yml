@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  title: "programmer-job-hunting"
+  description: "プログラマーに特化した就活サイト"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:3001/api/v1"
+    description: "local api server"
+tags:
+  - name: user
+    description: ユーザーに関するエンドポイント
+  - name: company
+    description: 会社に関するエンドポイント
+  - name: like
+    description: お気に入りに関するエンドポイント
+
+paths:
+  /companies:
+    get:
+      tags:
+        - company
+      summary: 会社一覧取得
+      description: 作成日時の新しい順で会社を10つ取得する
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company" # 参照するモデル
+    post:
+      tags:
+        - company
+      summary: 会社の新規作成
+      requestBody: # リクエストボディ
+        description: 会社作成データ
+        required: true
+        content:
+          multipart/form-data:
+            schema: # POSTするオブジェクト
+              type: object
+              properties:
+                company_name:
+                  type: string
+                  description: 会社名
+                  example: LINE株式会社
+                company_overview:
+                  type: string
+                  description: 会社概要
+                  example: モバイルメッセンジャーの提供
+                company_address:
+                  type: string
+                  description: 所在地
+                  example: 東京都新宿区
+                company_num_of_emp:
+                  type: string
+                  description: 従業員数
+                  example: 2800
+                company_image:
+                  type: string
+                  format: binary
+                  description: 会社を表す画像
+                  example: null
+                user_id:
+                  type: integer
+                  description: 作成者のユーザーID
+                  example: 3
+      responses:
+        default:
+          description: 作成済み会社
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+  /companies/search:
+    get:
+      tags:
+        - company
+      summary: キーワードによる会社の検索
+      description: キーワードによる会社の検索
+      parameters:
+        - in: query
+          name: keyword
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company" # 参照するモデル
+  /companies/{id}:
+    get:
+      tags:
+        - company
+      summary: "会社詳細取得"
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                $ref: "#/components/schemas/Company" # 参照するモデル
+    put:
+      tags:
+        - company
+      summary: 会社情報更新
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      requestBody: # リクエストボディ
+        description: 会社更新データ
+        required: true
+        content:
+          application/json:
+            schema: # POSTするオブジェクト
+              type: object
+              properties:
+                company_name:
+                  type: string
+                  description: 会社名
+                  example: LINE株式会社
+                company_overview:
+                  type: string
+                  description: 会社概要
+                  example: モバイルメッセンジャーの提供
+                company_address:
+                  type: string
+                  description: 所在地
+                  example: 東京都新宿区
+                company_num_of_emp:
+                  type: string
+                  description: 従業員数
+                  example: 2800
+                company_image:
+                  type: string
+                  description: 会社を表す画像
+                  example: null
+                user_id:
+                  type: integer
+                  description: 作成者のユーザーID
+                  example: 3
+      responses:
+        default:
+          description: 更新済み会社
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+    delete:
+      tags:
+        - company
+      summary: 会社削除
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                $ref: "#/components/schemas/Company" # 参照するモデル
+  /recommended-companies:
+    get:
+      tags:
+        - company
+      summary: 会社をランダムに5件だけ取得
+      description: 作成日時の新しい順で会社を10つ取得する
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company" # 参照するモデル
+  /skill-search:
+    get:
+      tags:
+        - company
+      summary: 技術スタックによる会社の検索
+      description: 技術スタックによる会社の検索
+      parameters:
+        - in: query
+          name: lang
+          schema:
+            type: string
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company" # 参照するモデル
+  /companies/{id}/likes:
+    get:
+      tags:
+        - like
+      summary: "指定した会社に登録されたお気に入り情報を取得"
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Like" # 参照するモデル
+    post:
+      tags:
+        - like
+      summary: お気に入りの新規作成
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      requestBody:
+        description: お気に入り作成データ
+        required: true
+        content:
+          application/json:
+            schema: # POSTするオブジェクト
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ログインユーザーID
+                  example: 3
+      responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Like"
+  /auth:
+    post:
+      tags:
+        - user
+      summary: "サインアップ"
+      requestBody: # リクエストボディ
+        description: ユーザーデータ
+        required: true
+        content:
+          application/json:
+            schema: # POSTするオブジェクト
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ユーザー名
+                  example: 山田太郎
+                email:
+                  type: string
+                  description: メールアドレス
+                  example: yamada@example.com
+                password:
+                  type: string
+                  description: パスワード
+                  example: password
+                password_confirmation:
+                  type: string
+                  description: 確認用パスワード
+                  example: password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /auth/sign_in:
+    post:
+      tags:
+        - user
+      summary: "ログイン"
+      requestBody: # リクエストボディ
+        description: ユーザーデータ
+        required: true
+        content:
+          application/json:
+            schema: # POSTするオブジェクト
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: メールアドレス
+                  example: yamada@example.com
+                password:
+                  type: string
+                  description: パスワード
+                  example: password
+      responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /auth/sign_out:
+    delete:
+      tags:
+        - user
+      summary: "ログアウト"
+      responses:
+        default:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+components:
+  parameters:
+    CompanyId:
+      name: id
+      in: path
+      description: 会社ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+  schemas: # スキーマオブジェクトの定義
+    User: # モデル名
+      type: object # 型
+      description: ユーザー
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ユーザーID
+          example: 1
+        name:
+          type: string
+          description: ユーザー名
+          example: 山田
+        email:
+          type: string
+          description: メールアドレス
+          example: yamada@example.com
+
+    Company:
+      type: object # 型
+      description: 会社
+      properties:
+        id: # プロパティ名
+          type: integer
+          format: int64
+          description: 会社ID
+          example: 1
+        user_id:
+          type: integer
+          format: int64
+          description: 作成者のユーザーID
+          example: 3
+        company_name:
+          type: string
+          description: 会社名
+          example: LINE株式会社
+        company_address:
+          type: string
+          description: 所在地
+          example: 東京都新宿区
+        company_overview:
+          type: string
+          description: 会社概要
+          example: モバイルメッセンジャーの提供
+        company_num_of_emp:
+          type: string
+          description: 従業員数
+          example: 2800
+        company_image:
+          type: string
+          format: binary
+          description: 会社画像
+          example: null
+    Like:
+      type: object # 型
+      description: お気に入り
+      properties:
+        id: # プロパティ名
+          type: integer
+          format: int64
+          description: お気に入りID
+          example: 1
+        user_id:
+          type: integer
+          format: int64
+          description: お気に入りしたユーザーID
+          example: 3
+        company_id:
+          type: integer
+          format: int64
+          description: お気に入りされた会社のID
+          example: 3

@@ -6,5 +6,8 @@
   "solargraph.transport": "external",
   "solargraph.logLevel": "debug",
   "solargraph.diagnostics": true,
-  "solargraph.hover": false
+  "solargraph.hover": false,
+
+  // ymlファイルのshemaによるエラーを回避
+  "yaml.schemaStore.enable": false
 }
