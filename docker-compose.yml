@@ -64,7 +64,7 @@ services:
     command: sh -c "cd app && yarn install && yarn start"
     ports:
       - "4000:3000"
-  
+
   # コード補完
   solargraph:
     build: ./server/
@@ -73,6 +73,16 @@ services:
       - ./server:/app
     ports:
       - "8091:7658"
+
+  # swagger ui
+  doc:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./docs/openapi.yml:/usr/share/nginx/html/openapi.yml
+    environment:
+      API_URL: openapi.yml
+    ports:
+      - 8080:8080
 
 volumes:
   mysql-data:
