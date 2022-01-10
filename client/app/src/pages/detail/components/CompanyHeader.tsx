@@ -37,7 +37,9 @@ const CompanyHeader: React.FC = () => {
           isTapped ?
             <Button
               variant='text'
-              startIcon={<StarIcon />}
+              startIcon={
+                <StarIcon htmlColor='#f1c40f' />
+              }
               onClick={() => { OnTapButton() }}
             >
               お気に入り済み
@@ -47,6 +49,7 @@ const CompanyHeader: React.FC = () => {
               variant='text'
               startIcon={<StarBorderIcon />}
               onClick={() => { OnTapButton() }}
+              color={'primary'}
             >
               お気に入りに登録する
             </Button>
