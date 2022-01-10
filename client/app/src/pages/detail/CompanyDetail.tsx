@@ -1,6 +1,8 @@
 import React, { useState, useEffect, createContext } from "react";
-import { companyDetail } from "lib/api/company";
 import { RouteComponentProps } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid';
+
+import { companyDetail } from "lib/api/company";
 import NotFound from "../404/404";
 import { Company } from "interfaces";
 import CompanyHeader from "./components/CompanyHeader";
@@ -33,12 +35,14 @@ const CompanyDetail: React.FC<PageProps> = props => {
 
   return (
     isSuccess && detailData !== undefined ?
-      <>
-        <CompanyContext.Provider value={detailData}>
-          <CompanyHeader/>
-        </CompanyContext.Provider>
-      </>
-      : <NotFound/>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <CompanyContext.Provider value={detailData}>
+            <CompanyHeader />
+          </CompanyContext.Provider>
+        </Grid>
+      </Grid>
+      : <NotFound />
   )
 }
 
