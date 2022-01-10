@@ -10,31 +10,14 @@ import { signIn } from 'lib/api/auth';
 import { SignInData } from 'interfaces';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    marginTop: theme.spacing(6)
-  },
   submitBtn: {
     marginTop: theme.spacing(2),
     flexGrow: 1,
     textTransform: "none"
   },
-  header: {
-    textAlign: "center"
-  },
-  card: {
-    padding: theme.spacing(2),
-    width: 500,
-    margin: "15px 0px"
-  },
-  box: {
-    marginTop: "2rem"
-  },
   link: {
     textDecoration: "none"
   },
-  divider: {
-    marginTop: "2"
-  }
 }))
 
 export function SimpleDialog(props: { open: boolean, onBackdropTapped: Function }) {
@@ -117,7 +100,7 @@ export function SimpleDialog(props: { open: boolean, onBackdropTapped: Function 
           />
           <Button
             type="submit"
-            variant="outlined"
+            variant="contained"
             color="primary"
             disabled={!email || !password ? true : false}
             className={classes.submitBtn}
@@ -127,7 +110,9 @@ export function SimpleDialog(props: { open: boolean, onBackdropTapped: Function 
             ログイン
           </Button>
         </form>
-        <Divider className={classes.divider} />
+        <Box m={2}>
+          <Divider />
+        </Box>
         <Button
           variant='outlined'
           color='primary'
