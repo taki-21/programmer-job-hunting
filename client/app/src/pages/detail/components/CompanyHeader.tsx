@@ -51,7 +51,7 @@ const CompanyHeader: React.FC = () => {
               お気に入りに登録する
             </Button>
         }
-        <SimpleDialog open={open} />
+        <SimpleDialog open={open} onBackdropTapped={() => setOpen(false)} />
       </>
     );
   }

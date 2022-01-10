@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles, Theme } from "@material-ui/core/styles"
-import { Button, CardContent, Container, TextField, Divider, Box } from '@material-ui/core';
+import { Button, TextField, Divider, Box } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from 'App';
 import Cookies from 'js-cookie';
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }))
 
-export function SimpleDialog(props: { open: boolean }) {
-  const { open } = props;
+export function SimpleDialog(props: { open: boolean, onBackdropTapped: Function }) {
+  const { open, onBackdropTapped } = props;
   const classes = useStyles()
   const history = useHistory()
 
@@ -81,9 +81,8 @@ export function SimpleDialog(props: { open: boolean }) {
   }
 
   const handleClose = () => {
-    console.log("close dialog");
+    onBackdropTapped();
   };
-
 
   return (
     <Dialog
