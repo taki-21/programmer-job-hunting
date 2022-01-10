@@ -1,19 +1,34 @@
 import React, { useContext, useState } from 'react';
 import { Typography, Button } from '@material-ui/core';
-import { CompanyContext } from '../CompanyDetail';
-
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 
+import { AuthContext } from "App"
+import { CompanyContext } from '../CompanyDetail';
+import { SimpleDialog } from 'components/LoginDialog';
+
 // contextを通して受け取った情報から、会社説明と会社画像を表示する
 const CompanyHeader: React.FC = () => {
-  // contextをうまく使えていないので、来週までにベストプラクティスを探る
+  const [open, setOpen] = useState<boolean>(false);
+  const { currentUser, isSignedIn } = useContext(AuthContext)
   const company = useContext(CompanyContext);
   const [isTapped, setIsTapped] = useState<boolean>(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  }
+
   const OnTapButton = () => {
-    // todo : ログイン状態を調べてログインしていない場合にはダイアログを表示する
-    setIsTapped(!isTapped);
+    if (isSignedIn && currentUser) {
+      // for debug
+      // console.log('ログインしています。')
+      setIsTapped(!isTapped);
+    } else {
+      // for debug
+      // console.log('ログインしていません。')
+      setOpen(true);
+    }
+
   }
 
   if (company !== null) {
@@ -40,7 +55,7 @@ const CompanyHeader: React.FC = () => {
               お気に入りに登録する
             </Button>
         }
-
+        <SimpleDialog open={open} />
       </>
     );
   }
