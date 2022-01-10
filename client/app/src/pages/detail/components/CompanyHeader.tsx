@@ -14,10 +14,6 @@ const CompanyHeader: React.FC = () => {
   const company = useContext(CompanyContext);
   const [isTapped, setIsTapped] = useState<boolean>(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  }
-
   const OnTapButton = () => {
     if (isSignedIn && currentUser) {
       // for debug
