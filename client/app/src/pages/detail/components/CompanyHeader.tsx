@@ -6,6 +6,7 @@ import StarIcon from '@material-ui/icons/Star';
 import { AuthContext } from "App"
 import { CompanyContext } from '../CompanyDetail';
 import { SimpleDialog } from 'components/LoginDialog';
+import { removeLike, addLike } from '../../../lib/api/like';
 
 // contextを通して受け取った情報から、会社説明と会社画像を表示する
 const CompanyHeader: React.FC = () => {
@@ -15,13 +16,17 @@ const CompanyHeader: React.FC = () => {
   const [isTapped, setIsTapped] = useState<boolean>(false);
 
   const OnTapButton = () => {
-    if (isSignedIn && currentUser) {
-      // for debug
-      // console.log('ログインしています。')
+    if (isSignedIn && currentUser && company !== null) {
+      if (isTapped) {
+        // 既にお気に入りを押している場合はremoveLikeを呼び出す
+        removeLike(company.id, currentUser.userId);
+      } else if (!isTapped) {
+        // お気に入りに登録していない
+        addLike(company.id, currentUser.userId);
+      }
       setIsTapped(!isTapped);
     } else {
-      // for debug
-      // console.log('ログインしていません。')
+      // ログインできていない場合はログインフォームを出す
       setOpen(true);
     }
 
@@ -32,6 +37,9 @@ const CompanyHeader: React.FC = () => {
       <>
         <Typography variant="h4" gutterBottom>
           {company?.companyName}
+        </Typography>
+        <Typography variant="h4" gutterBottom>
+          {currentUser?.userId}hogehgoe
         </Typography>
         {
           isTapped ?
