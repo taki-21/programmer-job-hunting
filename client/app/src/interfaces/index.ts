@@ -16,6 +16,7 @@ export interface SignInData {
 
 // ユーザー
 export interface User {
+  id:number,
   name: string;
   userId: number;
   email: string;

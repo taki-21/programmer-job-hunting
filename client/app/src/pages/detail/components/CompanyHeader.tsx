@@ -19,10 +19,10 @@ const CompanyHeader: React.FC = () => {
     if (isSignedIn && currentUser && company !== null) {
       if (isTapped) {
         // 既にお気に入りを押している場合はremoveLikeを呼び出す
-        removeLike(company.id, currentUser.userId);
+        removeLike(company.id, currentUser.id);
       } else if (!isTapped) {
         // お気に入りに登録していない
-        addLike(company.id, currentUser.userId);
+        addLike(company.id, currentUser.id);
       }
       setIsTapped(!isTapped);
     } else {
@@ -37,9 +37,6 @@ const CompanyHeader: React.FC = () => {
       <>
         <Typography variant="h4" gutterBottom>
           {company?.companyName}
-        </Typography>
-        <Typography variant="h4" gutterBottom>
-          {currentUser?.userId}hogehgoe
         </Typography>
         {
           isTapped ?
