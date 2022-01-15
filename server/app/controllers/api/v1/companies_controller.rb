@@ -78,10 +78,7 @@ module Api
       end
 
       def company_params
-        # params.permit(:company_name, :company_overview,:company_address, :company_num_of_emp, :company_image)
-        # params.require(:company).permit(:company_name, :company_overview,:company_address, :company_num_of_emp)
-        params.require(:company).permit(:company_name, :company_overview, :company_address, :company_num_of_emp,
-                                        :company_image)
+        params.require(:company).permit(:company_name, :company_overview, :company_address, :company_num_of_emp, :company_image)
       end
     end
   end
