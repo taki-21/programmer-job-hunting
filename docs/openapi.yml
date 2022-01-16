@@ -131,6 +131,18 @@ paths:
         - company
       summary: 会社情報更新
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       requestBody: # リクエストボディ
         description: 会社更新データ
@@ -172,6 +184,18 @@ paths:
         - company
       summary: 会社削除
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
         default:
@@ -221,18 +245,6 @@ paths:
         - like
       summary: "指定した会社に登録されたお気に入り情報を取得"
       parameters:
-        - name: access-token
-          in: header
-          schema:
-            type: string
-        - name: client
-          in: header
-          schema:
-            type: string
-        - name: uid
-          in: header
-          schema:
-            type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
         default:
