@@ -81,10 +81,6 @@ paths:
                   format: binary
                   description: 会社を表す画像
                   example: null
-                user_id:
-                  type: integer
-                  description: 作成者のユーザーID
-                  example: 3
       responses:
         default:
           description: 作成済み会社
@@ -164,10 +160,6 @@ paths:
                   type: string
                   description: 会社を表す画像
                   example: null
-                user_id:
-                  type: integer
-                  description: 作成者のユーザーID
-                  example: 3
       responses:
         default:
           description: 更新済み会社
@@ -269,18 +261,6 @@ paths:
           schema:
             type: string
         - $ref: '#/components/parameters/CompanyId'
-      requestBody:
-        description: お気に入り作成データ
-        required: true
-        content:
-          application/json:
-            schema: # POSTするオブジェクト
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                  description: ログインユーザーID
-                  example: 3
       responses:
         default:
           description: OK
