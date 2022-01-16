@@ -288,6 +288,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Like"
+    delete:
+      tags:
+        - like
+      summary: お気に入りの削除
+      parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                $ref: "#/components/schemas/Like" # 参照するモデル
   /auth:
     post:
       tags:
