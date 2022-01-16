@@ -229,6 +229,18 @@ paths:
         - like
       summary: "指定した会社に登録されたお気に入り情報を取得"
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
         default:
@@ -244,6 +256,18 @@ paths:
         - like
       summary: お気に入りの新規作成
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       requestBody:
         description: お気に入り作成データ
