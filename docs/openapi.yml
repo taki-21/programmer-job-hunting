@@ -39,6 +39,19 @@ paths:
       tags:
         - company
       summary: 会社の新規作成
+      parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
       requestBody: # リクエストボディ
         description: 会社作成データ
         required: true
