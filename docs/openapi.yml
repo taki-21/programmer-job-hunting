@@ -39,6 +39,19 @@ paths:
       tags:
         - company
       summary: 会社の新規作成
+      parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
       requestBody: # リクエストボディ
         description: 会社作成データ
         required: true
@@ -68,10 +81,6 @@ paths:
                   format: binary
                   description: 会社を表す画像
                   example: null
-                user_id:
-                  type: integer
-                  description: 作成者のユーザーID
-                  example: 3
       responses:
         default:
           description: 作成済み会社
@@ -122,6 +131,18 @@ paths:
         - company
       summary: 会社情報更新
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       requestBody: # リクエストボディ
         description: 会社更新データ
@@ -151,10 +172,6 @@ paths:
                   type: string
                   description: 会社を表す画像
                   example: null
-                user_id:
-                  type: integer
-                  description: 作成者のユーザーID
-                  example: 3
       responses:
         default:
           description: 更新済み会社
@@ -167,6 +184,18 @@ paths:
         - company
       summary: 会社削除
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
         default:
@@ -231,19 +260,19 @@ paths:
         - like
       summary: お気に入りの新規作成
       parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
         - $ref: '#/components/parameters/CompanyId'
-      requestBody:
-        description: お気に入り作成データ
-        required: true
-        content:
-          application/json:
-            schema: # POSTするオブジェクト
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                  description: ログインユーザーID
-                  example: 3
       responses:
         default:
           description: OK
@@ -251,6 +280,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Like"
+    delete:
+      tags:
+        - like
+      summary: お気に入りの削除
+      parameters:
+        - name: access-token
+          in: header
+          schema:
+            type: string
+        - name: client
+          in: header
+          schema:
+            type: string
+        - name: uid
+          in: header
+          schema:
+            type: string
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        default:
+          description: OK
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                $ref: "#/components/schemas/Like" # 参照するモデル
   /auth:
     post:
       tags:

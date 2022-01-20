@@ -4,6 +4,7 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       before_action :set_company, only: %i[show update destroy]
+      before_action :authenticate_api_v1_user!, only: %i[create update destroy]
 
       # TOPページに表示する会社（ランダムに5社）
       def pickup
@@ -44,7 +45,7 @@ module Api
 
       # 新規作成
       def create
-        company = Company.new(company_params)
+        company = current_api_v1_user.companies.new(company_params)
         if company.save
           render json: { status: 200, company: company }
         else
@@ -78,10 +79,7 @@ module Api
       end
 
       def company_params
-        # params.permit(:company_name, :company_overview,:company_address, :company_num_of_emp, :company_image)
-        # params.require(:company).permit(:company_name, :company_overview,:company_address, :company_num_of_emp)
-        params.require(:company).permit(:company_name, :company_overview, :company_address, :company_num_of_emp,
-                                        :company_image)
+        params.require(:company).permit(:company_name, :company_overview, :company_address, :company_num_of_emp, :company_image)
       end
     end
   end
