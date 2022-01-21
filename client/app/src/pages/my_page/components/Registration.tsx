@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     padding: theme.spacing(2),
-    width: 500,
     margin: "15px 0px",
   },
   imageSelectButton: {
@@ -65,7 +64,7 @@ const Registration: React.FC = () => {
     formData.append("company[company_name]", companyName); // ポイント1！
     formData.append("company[company_overview]", companyOverview);
     formData.append("company[company_address]", companyAddress);
-    formData.append("company[company_num_of_emp]", companyNumOfEmp); 
+    formData.append("company[company_num_of_emp]", companyNumOfEmp);
     if (companyImage) formData.append("company[company_image]", companyImage);
 
     return formData;

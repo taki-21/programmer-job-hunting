@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     padding: theme.spacing(2),
-    width: 500,
     margin: "15px 0px"
   },
   logoutButton: {
