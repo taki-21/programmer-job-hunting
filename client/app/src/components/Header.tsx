@@ -8,7 +8,7 @@ import {
   IconButton,
   Drawer,
   Link,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link as RouterLink } from "react-router-dom";
@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
   },
   logo: {
     fontWeight: 700,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",
@@ -149,7 +149,7 @@ export default function Header() {
   };
 
   const siteLogo = (
-    <Button {...{ to: "/", component: RouterLink, }}>
+    <Button {...{ to: "/", component: RouterLink }}>
       <Typography variant="h6" component="h1" className={logo}>
         Programmer-Job-Hunting
       </Typography>

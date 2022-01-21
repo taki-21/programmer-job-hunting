@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
-import { Typography } from "@material-ui/core";
-import { companyDetail } from "lib/api/company";
+import React, { useState, useEffect, createContext } from "react";
 import { RouteComponentProps } from 'react-router-dom'
-import NotFound from "../404/404";
+import Grid from '@material-ui/core/Grid';
+
+import { companyDetail } from "lib/api/company";
 import { Company } from "interfaces";
 import CompanyHeader from "./components/CompanyHeader";
 
@@ -33,13 +33,15 @@ const CompanyDetail: React.FC<PageProps> = props => {
   }, [])
 
   return (
-    isSuccess && detailData != undefined ?
-      <>
-        <CompanyContext.Provider value={detailData}>
-          <CompanyHeader/>
-        </CompanyContext.Provider>
-      </>
-      : <NotFound/>
+    isSuccess && detailData !== undefined ?
+      <Grid container>
+        <Grid item zeroMinWidth >
+          <CompanyContext.Provider value={detailData}>
+            <CompanyHeader />
+          </CompanyContext.Provider>
+        </Grid>
+      </Grid>
+      : <></>
   )
 }
 
