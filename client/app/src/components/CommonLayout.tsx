@@ -9,7 +9,9 @@ import Banner from "./Banner";
 
 const useStyles = makeStyles(() => ({
   container: {
-    marginBottom: "3rem",
+    "@media (min-width:700px)": {
+      maxWidth: '700px',
+    },
   },
   body: {
     display: "flex",
@@ -34,10 +36,8 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
       <div className={classes.body}>
         <Header />
         <Banner />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container justifyContent="center">
-            <Grid item>{children}</Grid>
-          </Grid>
+        <Container className={classes.container}>
+          {children}
         </Container>
         <div className={classes.footer}>
           <Footer />

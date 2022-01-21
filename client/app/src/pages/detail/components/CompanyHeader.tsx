@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Container } from '@material-ui/core';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 
@@ -35,30 +35,36 @@ const CompanyHeader: React.FC = () => {
   if (company !== null) {
     return (
       <>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom noWrap>
           {company?.companyName}
         </Typography>
-        {
-          isTapped ?
-            <Button
-              variant='text'
-              startIcon={
-                <StarIcon htmlColor='#f1c40f' />
-              }
-              onClick={() => { OnTapButton() }}
-            >
-              お気に入り済み
-            </Button>
-            :
-            <Button
-              variant='text'
-              startIcon={<StarBorderIcon />}
-              onClick={() => { OnTapButton() }}
-              color={'primary'}
-            >
-              お気に入りに登録する
-            </Button>
-        }
+        <>
+          {
+            isTapped ?
+              <Button
+                variant='text'
+                startIcon={
+                  <StarIcon htmlColor='#f1c40f' />
+                }
+                onClick={() => { OnTapButton() }}
+              >
+                お気に入り済み
+              </Button>
+              :
+              <Button
+                variant='text'
+                startIcon={<StarBorderIcon />}
+                onClick={() => { OnTapButton() }}
+                color={'primary'}
+              >
+                お気に入りに登録する
+              </Button>
+          }
+        </>
+
+        <Typography >
+          {company?.companyOverview}
+        </Typography>
         <SimpleDialog open={open} onBackdropTapped={() => setOpen(false)} />
       </>
     );

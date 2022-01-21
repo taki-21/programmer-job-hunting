@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 
 import { companyDetail } from "lib/api/company";
-import NotFound from "../404/404";
 import { Company } from "interfaces";
 import CompanyHeader from "./components/CompanyHeader";
 
@@ -35,14 +34,14 @@ const CompanyDetail: React.FC<PageProps> = props => {
 
   return (
     isSuccess && detailData !== undefined ?
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+      <Grid container>
+        <Grid item zeroMinWidth >
           <CompanyContext.Provider value={detailData}>
             <CompanyHeader />
           </CompanyContext.Provider>
         </Grid>
       </Grid>
-      : <NotFound />
+      : <></>
   )
 }
 
