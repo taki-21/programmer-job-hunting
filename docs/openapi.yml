@@ -27,7 +27,7 @@ paths:
           schema:
             type: integer
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -82,8 +82,8 @@ paths:
                   description: 会社を表す画像
                   example: null
       responses:
-        default:
-          description: 作成済み会社
+        200:
+          description: OK
           content:
             application/json:
               schema:
@@ -104,7 +104,7 @@ paths:
           schema:
             type: integer
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -120,7 +120,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/CompanyId'
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -173,8 +173,8 @@ paths:
                   description: 会社を表す画像
                   example: null
       responses:
-        default:
-          description: 更新済み会社
+        200:
+          description: OK
           content:
             application/json:
               schema:
@@ -198,7 +198,7 @@ paths:
             type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -211,7 +211,7 @@ paths:
       summary: 会社をランダムに5件だけ取得
       description: 作成日時の新しい順で会社を10つ取得する
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -231,7 +231,7 @@ paths:
           schema:
             type: string
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -247,7 +247,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/CompanyId'
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -274,7 +274,7 @@ paths:
             type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json:
@@ -299,7 +299,7 @@ paths:
             type: string
         - $ref: '#/components/parameters/CompanyId'
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json: # レスポンスの形式指定
@@ -363,7 +363,7 @@ paths:
                   description: パスワード
                   example: password
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json:
@@ -375,7 +375,7 @@ paths:
         - user
       summary: "ログアウト"
       responses:
-        default:
+        200:
           description: OK
           content:
             application/json:
@@ -466,3 +466,13 @@ components:
           format: int64
           description: お気に入りされた会社のID
           example: 3
+        created_at:
+          type: string
+          format: date-time
+          description: 作成日時
+          example: "2022-01-22T23:46:11.194Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: 更新日時
+          example: '2022-02-22T23:46:11.194Z'
