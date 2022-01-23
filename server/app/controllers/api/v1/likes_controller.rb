@@ -12,7 +12,7 @@ module Api
       def create
         like = Like.new(user_id: current_api_v1_user.id, company_id: params[:company_id])
         if like.save
-          render json: { status: :ok, id: like.id }
+          render json: like
         else
           render json: { status: :bad_request, errors: like.errors.messages }
         end
@@ -21,7 +21,7 @@ module Api
       def destroy
         like = Like.find_by(user_id: current_api_v1_user.id, company_id: params[:company_id])
         if like.destroy
-          render json: { status: :ok, id: like.id }
+          render json: like
         else
           render json: { status: :bad_request, errors: like.errors.messages }
         end
