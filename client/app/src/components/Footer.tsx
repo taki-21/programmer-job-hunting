@@ -54,7 +54,6 @@ const Footer: React.FC = () => {
               component: RouterLink,
               to: href,
               color: "inherit",
-              style: { textDecoration: "none" },
               key: label,
             }}
           >
