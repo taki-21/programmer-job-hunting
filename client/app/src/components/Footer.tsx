@@ -38,11 +38,11 @@ const useStyles = makeStyles(() => ({
     paddingTop: 20,
   },
   footerMenu: {
-    padding: "5px 25px",
+    padding: "5px 30px",
   },
 }));
 
-export default function Footer() {
+const Footer: React.FC = () => {
   const { footer, footerMenu } = useStyles();
 
   const getFooterMenu = (footerData: { label: string; href: string }[]) => {
@@ -68,8 +68,8 @@ export default function Footer() {
   return (
     <footer>
       <Box color="White" className={footer}>
-        <Container maxWidth="lg">
-          <Grid container spacing={5}>
+        <Container maxWidth="md">
+          <Grid container >
             <Grid item xs={12} sm={6}>
               {getFooterMenu(footerDataLeft)}
             </Grid>
@@ -85,3 +85,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer
