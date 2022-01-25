@@ -13,32 +13,32 @@ type Props = {
 
 const useStyles = makeStyles(() => ({
   card: {
-    width: 150,
+    minWidth: "165px",
     margin: "10px 10px",
   },
 }))
 
-const CompanyMiniTile: React.FC<Props> = (props) => {
+const CompanyTile: React.FC<Props> = (props) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardActionArea >
-        <Link to={`/detail/${props.data.id}`} target="_blank" rel="noopener">
+        <Link to={`/detail/${props.data.id}`}>
           <CardMedia
             component="img"
             image={CompanyImage}
             alt="company image"
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography variant="subtitle1">
               {props.data.companyName}
             </Typography>
           </CardContent>
         </Link>
       </CardActionArea>
-    </Card>
+    </Card >
   )
 }
 
-export default CompanyMiniTile
+export default CompanyTile

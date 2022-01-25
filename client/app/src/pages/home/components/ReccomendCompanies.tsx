@@ -3,8 +3,6 @@ import { reccomendCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyTile from "./CompanyMiniTile";
 import { Company } from "interfaces";
-import { Grid } from "@material-ui/core";
-
 
 const ReccomendCompanies: React.FC = () => {
   const [companies, setCompanies] = useState([])
@@ -22,20 +20,18 @@ const ReccomendCompanies: React.FC = () => {
   }, [])
 
   return (
-    <div style={{ width: '100%' }}>
+    <>
       <Text as="h1" fontSize="25">おすすめの企業</Text>
-
-      <Grid container>
+      <div style={{ display: 'flex', overflowX: 'auto' }}>
         {
           companies.map(
             (item: Company) =>
-              <Grid item key={item.id}>
-                <CompanyTile data={item} />
-              </Grid>
+              <CompanyTile data={item} />
           )
         }
-      </Grid>
-    </div >
+      </div>
+
+    </>
 
   )
 
