@@ -6,7 +6,7 @@ import { searchCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyCard from "../../components/CompanyCard";
 import { Company } from "interfaces";
-import { CircularProgress, List } from "@material-ui/core";
+import { CircularProgress, Grid, List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     textAlign: 'center',
     paddingTop: '100px'
+  },
+  centering: {
+    textAlign: 'center',
+  },
+  in: {
+    display: 'inline-block',
   }
 }))
 
@@ -46,21 +52,39 @@ const CompanySearch: React.FC = () => {
 
   return (
     <>
-      <Text as="h1" fontSize="25">全ての会社から探す</Text>
-      <List>
-        {
-          companies.length !== 0
-            ? companies.map((company: Company) => <CompanyCard key={company.id} data={company} />)
-            :
-            <div className={classes.loading}>
-              <CircularProgress />
-            </div>
-        }
-      </List>
-      <div className={classes.pagenation_center}>
-        <Pagination count={10} onChange={(_, page) => setPage(page)} />
-      </div>
+      <Grid container>
+        <Grid xs={false} md={4}>
+
+        </Grid>
+        <Grid item md>
+          <Text as="h1" fontSize="25">全ての会社から探す</Text>
+          <List className={classes.centering}>
+            {
+              companies.length !== 0
+                ? companies.map(
+                  (company: Company) =>
+                    <CompanyCard
+                      key={company.id}
+                      data={company}
+                    />)
+                :
+                <div className={classes.loading}>
+                  <CircularProgress />
+                </div>
+            }
+          </List>
+          <div className={classes.centering}>
+            <Pagination
+              count={10}
+              onChange={(_, page) => setPage(page)}
+              className={classes.in}
+            />
+          </div>
+
+        </Grid>
+      </Grid>
     </>
+
   )
 }
 

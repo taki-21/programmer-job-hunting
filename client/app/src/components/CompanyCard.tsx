@@ -1,4 +1,4 @@
-import { Typography, ListItem, Card, Grid, Box } from "@material-ui/core";
+import { Typography, ListItem, Card, Grid, Box, CardActionArea } from "@material-ui/core";
 import { Company } from "interfaces";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useCallback, useState } from "react";
@@ -15,8 +15,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "5px 20px",
   },
   card: {
-    padding: theme.spacing(2),
-    width: 500,
+    minWidth: "500px"
+  },
+  cardArea: {
+    padding: theme.spacing(1),
   },
   image: {
     width: "75px",
@@ -33,6 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "block",
     fontSize: "23px",
   },
+  in: {
+    display: "inline-block"
+  }
 }));
 
 const CompanyCard: React.FC<Props> = (props) => {
@@ -44,17 +49,20 @@ const CompanyCard: React.FC<Props> = (props) => {
     companyOverview += "...";
   }
   return (
-    <ListItem alignItems="flex-start" key={props.data.id}>
+    <ListItem
+      key={props.data.id}
+      className={classes.in}
+    >
       <Card className={classes.card}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <Box className={classes.image}>
-              <img src={DummyLogo} alt="dummy logo" />
-            </Box>
-          </Grid>
+        <CardActionArea className={classes.card}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Box className={classes.image}>
+                <img src={DummyLogo} alt="dummy logo" />
+              </Box>
+            </Grid>
 
-          <Grid item xs={12} sm container>
-            <Grid item xs>
+            <Grid item xs={12} sm>
               <Link
                 to={`/detail/${props.data.id}`}
                 className={classes.companyNameText}
@@ -66,7 +74,7 @@ const CompanyCard: React.FC<Props> = (props) => {
               </Typography>
             </Grid>
           </Grid>
-        </Grid>
+        </CardActionArea>
       </Card>
     </ListItem>
   );

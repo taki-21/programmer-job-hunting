@@ -8,11 +8,6 @@ import Footer from "./Footer";
 import Banner from "./Banner";
 
 const useStyles = makeStyles(() => ({
-  container: {
-    "@media (min-width:700px)": {
-      maxWidth: '700px',
-    },
-  },
   body: {
     display: "flex",
     flexDirection: "column",
@@ -36,7 +31,7 @@ const CommonLayout = ({ children }: CommonLayoutProps) => {
       <div className={classes.body}>
         <Header />
         <Banner />
-        <Container className={classes.container}>
+        <Container maxWidth='md'>
           {children}
         </Container>
         <div className={classes.footer}>
