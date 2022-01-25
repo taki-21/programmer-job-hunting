@@ -10,11 +10,16 @@ import { CircularProgress, List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) => ({
-
   pagenation_center: {
     display: 'flex',
     justifyContent: 'center'
   },
+  loading: {
+    height: '100vh',
+    alignItems: 'center',
+    textAlign: 'center',
+    paddingTop: '100px'
+  }
 }))
 
 /// 「全ての会社から探す」ページ。
@@ -39,19 +44,18 @@ const CompanySearch: React.FC = () => {
     getCompanies();
   }, [page, history]);
 
-  if (companies.length === 0) {
-    return (
-      <div style={{ height: '100vh', alignItems: 'center', textAlign: 'center', paddingTop: '100px' }}>
-        <CircularProgress />
-      </div>
-    );
-  }
-
   return (
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company} />) : null}
+        {
+          companies.length !== 0
+            ? companies.map((company: Company) => <CompanyCard key={company.id} data={company} />)
+            :
+            <div className={classes.loading}>
+              <CircularProgress />
+            </div>
+        }
       </List>
       <div className={classes.pagenation_center}>
         <Pagination count={10} onChange={(_, page) => setPage(page)} />
