@@ -55,9 +55,6 @@ const CompanyCard: React.FC<Props> = (props) => {
 
           <Grid item xs={12} sm container>
             <Grid item xs>
-              <Typography variant="body2" color="textSecondary">
-                広告・マスコミ | テレビ・ラジオ
-              </Typography>
               <Link
                 to={`/detail/${props.data.id}`}
                 className={classes.companyNameText}

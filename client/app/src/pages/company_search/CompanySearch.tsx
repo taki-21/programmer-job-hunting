@@ -6,7 +6,7 @@ import { searchCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyCard from "../../components/CompanyCard";
 import { Company } from "interfaces";
-import { List } from "@material-ui/core";
+import { CircularProgress, List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -33,21 +33,28 @@ const CompanySearch: React.FC = () => {
       const response = await searchCompany(page);
       if (response.status === 200) {
         history.push(`/companies?page=${page}`)
-        console.log(response.data.companies);
         setCompanies(response.data.companies)
       }
     }
     getCompanies();
   }, [page, history]);
 
+  if (companies.length === 0) {
+    return (
+      <div style={{ height: '100vh', alignItems: 'center', textAlign: 'center', paddingTop: '100px' }}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
   return (
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}/>) : null}
+        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company} />) : null}
       </List>
       <div className={classes.pagenation_center}>
-        <Pagination count={10} onChange={(_, page) => setPage(page)}/>
+        <Pagination count={10} onChange={(_, page) => setPage(page)} />
       </div>
     </>
   )
