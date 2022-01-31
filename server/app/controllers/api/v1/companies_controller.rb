@@ -19,7 +19,7 @@ module Api
                     else
                       Company.page(params[:page] ||= 1).per(10).order(created_at: :desc)
                     end
-        render json: { status: 200, companies: companies }
+        render json: companies
       end
 
       def search
