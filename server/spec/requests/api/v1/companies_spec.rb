@@ -28,5 +28,20 @@ RSpec.describe "Api::V1::Companies", type: :request do
       # 要求した特定のポストのみ取得した事を確認する
       expect(data['company_name']).to eq(company.company_name)
     end
+
+    it '会社を新規作成する' do
+      user = FactoryBot.create(:user)
+      # ログイン
+      login user
+      valid_params = {company_name: 'sample_company', company_overview: 'sample_company_overview', company_address: 'shibuya', company_num_of_emp: '100'}
+
+      # データが作成されていることを確認
+      post '/api/v1/companies', params: {company: valid_params}
+
+      expect(Company.all.count).to eq 1
+
+      # リクエスト成功を表す200が返ってきたか確認
+      expect(response.status).to eq 200
+    end
   end
 end
