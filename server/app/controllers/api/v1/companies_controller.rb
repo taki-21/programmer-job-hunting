@@ -69,7 +69,12 @@ module Api
 
       # 会社情報削除
       def destroy
-        @company.destroy
+        if @company.destroy
+          render json: @company
+        else
+          render json: @company.errors
+        end
+
       end
 
       private

@@ -59,5 +59,16 @@ RSpec.describe "Api::V1::Companies", type: :request do
       #データが更新されている事を確認
       expect(data['company_name']).to eq('updated_company')
     end
+    it '会社を削除する' do
+      # ログイン
+      login FactoryBot.create(:user)
+      company = FactoryBot.create(:company)
+
+      #データが削除されている事を確認
+      expect { delete "/api/v1/companies/#{company.id}" }.to change(Company, :count).by(-1)
+
+      # リクエスト成功を表す200が返ってきたか確認する。
+      expect(response.status).to eq(200)
+    end
   end
 end
