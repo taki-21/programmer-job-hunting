@@ -61,7 +61,7 @@ module Api
       # 会社情報更新
       def update
         if @company.update(company_params)
-          render json: { status: 200, company: @company }
+          render json: @company
         else
           render json: { status: 500, message: 'update failed' }
         end

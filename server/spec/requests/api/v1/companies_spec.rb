@@ -43,5 +43,21 @@ RSpec.describe "Api::V1::Companies", type: :request do
       # リクエスト成功を表す200が返ってきたか確認
       expect(response.status).to eq 200
     end
+
+    it '会社情報の更新を行う' do
+      # ログイン
+      login FactoryBot.create(:user)
+      company = FactoryBot.create(:company)
+
+      valid_params = {company_name: 'updated_company', company_overview: 'sample_company_overview', company_address: 'shibuya', company_num_of_emp: '100'}
+      put "/api/v1/companies/#{company.id}", params: {company: valid_params }
+      data = JSON.parse(response.body)
+
+      # リクエスト成功を表す200が返ってきたか確認する。
+      expect(response.status).to eq(200)
+
+      #データが更新されている事を確認
+      expect(data['company_name']).to eq('updated_company')
+    end
   end
 end
