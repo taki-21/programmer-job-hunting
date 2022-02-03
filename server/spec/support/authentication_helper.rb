@@ -1,5 +1,5 @@
 module AuthenticationHelper
-  HTTP_HELPERS_TO_OVERRIDE = [:get, :post, :patch, :put, :delete]
+  HTTP_HELPERS_TO_OVERRIDE = %i[get post patch put delete].freeze
 
   # ログイン状態にする
   def login(user)
@@ -22,11 +22,12 @@ module AuthenticationHelper
   end
 
   private
-   # tokenをセットするprivateメソッド
-    def add_auth_headers(args)
-      return unless defined? @auth_token # @auth_tokenが定義されていなければ処理終了 https://www.xmisao.com/2014/03/30/checking-if-a-variable-is-defined.html
-      args[:headers] ||= {} # args[:headers]がnilなら{}を代入
-      args[:headers].merge!(@auth_token) # args[:headers]に@auth_tokenを代入
-    end
 
+  # tokenをセットするprivateメソッド
+  def add_auth_headers(args)
+    return unless defined? @auth_token # @auth_tokenが定義されていなければ処理終了 https://www.xmisao.com/2014/03/30/checking-if-a-variable-is-defined.html
+
+    args[:headers] ||= {} # args[:headers]がnilなら{}を代入
+    args[:headers].merge!(@auth_token) # args[:headers]に@auth_tokenを代入
+  end
 end

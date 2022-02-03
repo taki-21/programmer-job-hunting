@@ -74,7 +74,6 @@ module Api
         else
           render json: @company.errors
         end
-
       end
 
       private
