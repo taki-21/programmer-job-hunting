@@ -12,7 +12,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
       expect(response.status).to eq(200)
 
       # 正しい数のデータが返されたかを確認する
-      expect(data.length).to eq(10)
+      expect(data["companies"].length).to eq(10)
     end
 
     it '会社詳細を取得する' do

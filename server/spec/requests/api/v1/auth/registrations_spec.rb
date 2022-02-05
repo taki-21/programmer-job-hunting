@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
   describe 'POST /api/v1/auth' do
-    subject { post(api_v1_user_registration_path, params: params) }
+    subject { post(api_v1_user_registration_path, params: {user: params}) }
     context '値が正しく入力されているとき' do
       let(:params) { attributes_for(:user) }
       it 'ユーザー登録できる' do
