@@ -19,12 +19,12 @@ const SearchCompanyName: React.FC = () => {
   const history = useHistory()
 
   useEffect(() => {
-    ///  現在の　backではpage 
+    ///  現在の　backではpage
     async function getCompanies() {
       await companyNameSearch(keyword, page).then(
         response => {
           if (response.status === 200) {
-            setCompanies(response.data.companies);
+            setCompanies(response.data);
           }
         }
       );

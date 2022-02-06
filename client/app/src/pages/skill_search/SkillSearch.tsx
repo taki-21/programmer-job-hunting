@@ -32,7 +32,7 @@ const SkillSearch: React.FC = () => {
       res => {
         if (res.status === 200) {
           console.log(res.data);
-          setCompanies(res.data.companies);
+          setCompanies(res.data);
         }
       }
     )
