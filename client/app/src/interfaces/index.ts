@@ -1,11 +1,9 @@
 // サインアップ
 export interface SignUpData {
-  user: {
-    name: string;
-    email: string;
-    password: string;
-    passwordConfirmation: string;
-  };
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 // サインイン
@@ -16,7 +14,7 @@ export interface SignInData {
 
 // ユーザー
 export interface User {
-  id:number,
+  id: number;
   name: string;
   userId: number;
   email: string;

@@ -5,18 +5,18 @@ module Api
     class SelectionsController < ApplicationController
       def index
         selections = Selection.order(created_at: :desc)
-        render json: { status: 200, selections: selections }
+        render json: selections
       end
 
       def show
         selection = Selection.where(company_id: params[:id])
-        render json: { status: 200, selection: selection }
+        render json: selection
       end
 
       def create
         selection = Selection.new(selection_params)
         if selection.save
-          render json: { status: 200, selection: selection }
+          render json: selection
         else
           render jdon: { status: 500, message: '作成に失敗しました' }
         end

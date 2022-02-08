@@ -9,7 +9,7 @@ module Api
       # TOPページに表示する会社（ランダムに5社）
       def pickup
         companies = Company.order('RAND()').limit(5)
-        render json: { status: 200, companies: companies }
+        render json: companies
       end
 
       # 会社一覧
@@ -19,12 +19,12 @@ module Api
                     else
                       Company.page(params[:page] ||= 1).per(10).order(created_at: :desc)
                     end
-        render json: { status: 200, companies: companies }
+        render json: companies
       end
 
       def search
         companies = Company.search(params[:keyword]).page(params[:page] ||= 1).per(10).order(created_at: :desc)
-        render json: { status: 200, companies: companies }
+        render json: companies
       end
 
       def skill_search
@@ -40,14 +40,14 @@ module Api
         companies = Company.where(id: skill_id.ids)
 
         # 取得したデータの中からIdを取り出し、それを元にして会社情報を取得する
-        render json: { status: 200, companies: companies }
+        render json: companies
       end
 
       # 新規作成
       def create
         company = current_api_v1_user.companies.new(company_params)
         if company.save
-          render json: { status: 200, company: company }
+          render json: company
         else
           render json: { status: 500, message: 'update failed' }
         end
@@ -61,7 +61,7 @@ module Api
       # 会社情報更新
       def update
         if @company.update(company_params)
-          render json: { status: 200, company: @company }
+          render json: @company
         else
           render json: { status: 500, message: 'update failed' }
         end
@@ -69,7 +69,11 @@ module Api
 
       # 会社情報削除
       def destroy
-        @company.destroy
+        if @company.destroy
+          render json: @company
+        else
+          render json: @company.errors
+        end
       end
 
       private

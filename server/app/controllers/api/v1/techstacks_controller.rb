@@ -5,18 +5,18 @@ module Api
     class TechstacksController < ApplicationController
       def index
         techstacks = Techstack.order(created_at: :desc)
-        render json: { status: 200, techstacks: techstacks }
+        render json: techstacks
       end
 
       def show
         techstack = Techstack.where(company_id: params[:id])
-        render json: { status: 200, techstack: techstack }
+        render json: techstack
       end
 
       def create
         techstack = Techstack.new(techstack_params)
         if techstack.save
-          render json: { status: 200, techstack: techstack }
+          render json: techstack
         else
           render jdon: { status: 500, message: '作成に失敗しました' }
         end

@@ -8,6 +8,8 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import axios, { AxiosPromise, AxiosResponse } from "axios";
 import applyCaseMiddleware from "axios-case-converter";
 
+import client from "lib/api/client";
+
 // Postするデータにはidが存在しないことによりエラーが発生したので
 // interfaceで定義したCompanyとは別で定義している（要リファクタ）
 
@@ -84,23 +86,6 @@ const Registration: React.FC = () => {
   };
 
   const createPost = (data: FormData): AxiosPromise => {
-    const client = applyCaseMiddleware(
-      axios.create({
-        baseURL: "http://localhost:3001/api/v1",
-        headers: {
-          "Content-Type": "multipart/form-data", // 画像ファイルを取り扱うのでform-dataで送信
-        },
-      }),
-      { ignoreHeaders: true }
-    );
-
-    client.interceptors.response.use(
-      (response: AxiosResponse): AxiosResponse => {
-        const data = response.data;
-        return { ...response.data, data };
-      }
-    );
-
     return client.post("/companies", data);
   };
 
