@@ -16,6 +16,7 @@ import SkillSearch from "pages/skill_search/SkillSearch"
 import NotFound from "pages/404/404"
 import SearchCompanyName from "pages/search_company_name/SearchCompanyName"
 import SkillSearchBox from "pages/skill_search/SkillSearchBox"
+import ScrollToTop from "components/ScrollToTop"
 
 // グローバルで扱う変数・関数
 export const AuthContext = createContext({} as {
@@ -68,20 +69,22 @@ const App: React.FC = () => {
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
         <ChakraProvider theme={theme}>
           <CommonLayout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/mypage" component={MyPage} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route path="/companies" component={CompanySearch} />
-              <Route path="/detail/:companyId" component={CompanyDetail} />
+            <ScrollToTop>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/mypage" component={MyPage} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route path="/companies" component={CompanySearch} />
+                <Route path="/detail/:companyId" component={CompanyDetail} />
 
-              <Route exact path="/registration" component={Registration} />
-              <Route exact path="/skill" component={SkillSearchBox} />
+                <Route exact path="/registration" component={Registration} />
+                <Route exact path="/skill" component={SkillSearchBox} />
 
-              <Route path="/search/companies" component={SearchCompanyName} />
-              <Route exact path="/search/skill" component={SkillSearch} />
-              <Route component={NotFound} />
-            </Switch>
+                <Route path="/search/companies" component={SearchCompanyName} />
+                <Route exact path="/search/skill" component={SkillSearch} />
+                <Route component={NotFound} />
+              </Switch>
+            </ScrollToTop>
           </CommonLayout>
         </ChakraProvider>
       </AuthContext.Provider>
