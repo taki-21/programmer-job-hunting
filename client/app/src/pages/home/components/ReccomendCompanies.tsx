@@ -14,7 +14,7 @@ const ReccomendCompanies: React.FC = () => {
     reccomendCompany().then(
       res => {
         if (res.status === 200) {
-          setCompanies(res.data.companies);
+          setCompanies(res.data);
         }
       }
     )

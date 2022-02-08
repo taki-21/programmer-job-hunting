@@ -49,12 +49,10 @@ const SignUp: React.FC = () => {
     e.preventDefault()
 
     const data: SignUpData = {
-      "user": {
-        name: name,
-        email: email,
-        password: password,
-        passwordConfirmation: passwordConfirmation
-      },
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirmation: passwordConfirmation
     }
 
     try {
