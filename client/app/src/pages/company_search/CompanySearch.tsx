@@ -41,6 +41,7 @@ const CompanySearch: React.FC = () => {
 
   useEffect(() => {
     async function getCompanies() {
+      window.scrollTo(0, 0)
       const response = await searchCompany(page);
       if (response.status === 200) {
         history.push(`/companies?page=${page}`)
