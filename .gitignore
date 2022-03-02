@@ -1,2 +1,3 @@
 # コンフリクトするのでgitignoreに追加
 .DS_Store
+.env
