@@ -1,6 +1,7 @@
 version: '3'
 services:
   deploy:
+    container_name: deploy
     image: hashicorp/terraform:0.14.7
     env_file:
       - .env
@@ -10,3 +11,47 @@ services:
     working_dir: /code
     entrypoint: ash
     tty: true
+
+  api:
+    container_name: api
+    build:
+      context: ./server/
+      dockerfile: Dockerfile
+    command: /bin/sh -c "rm -f /myapp/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    image: rails:dev
+    volumes:
+      - ./server:/myapp
+      - ./server/vendor/bundle:/myapp/vendor/bundle
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # - /tmp/dockerdir:/etc/mysql/conf.d/
+    ports:
+      - 3306:3306
+
+  client:
+    container_name: client
+    build:
+      context: ./client/
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/usr/src/app
+    command: sh -c "cd app && yarn install && yarn start"
+    ports:
+      - "4000:3000"
+
+volumes:
+  # bundle:
+  mysql-data:
