@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_153711) do
+ActiveRecord::Schema.define(version: 2022_03_07_142147) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_153711) do
     t.string "newgra_or_midcar"
     t.string "eng_category"
     t.boolean "admin", default: false
+    t.boolean "recruiter", default: false
     t.string "image"
     t.string "email"
     t.text "tokens"
