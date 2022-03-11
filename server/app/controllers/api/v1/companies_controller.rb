@@ -45,7 +45,7 @@ module Api
 
       # 新規作成
       def create
-        authorize Company
+        # authorize Company
         company = current_api_v1_user.companies.new(company_params)
         if company.save
           render json: company
@@ -61,7 +61,7 @@ module Api
 
       # 会社情報更新
       def update
-        authorize Company
+        # authorize Company
         if @company.update(company_params)
           render json: @company
         else
@@ -71,7 +71,7 @@ module Api
 
       # 会社情報削除
       def destroy
-        authorize Company
+        # authorize Company
         if @company.destroy
           render json: @company
         else
