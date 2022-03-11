@@ -1,4 +1,5 @@
-import { reccomendCompany, companyNameSearch, searchCompany } from '../src/lib/api/company';
+import { Console } from 'console';
+import { reccomendCompany, companyNameSearch, searchCompany, companyDetail } from '../src/lib/api/company';
 
 // APIから返却される企業情報が5件であるかを確認する
 test('check length of recommend companies', async () => {
@@ -35,3 +36,10 @@ test('check search company', async () => {
 });
 
 
+// companyDetail()のテスト
+test('check company detail', async () => {
+  // idが1の会社情報を取得する
+  const response = await companyDetail('1');
+  // プロパティの存在確認をすることで会社情報が返されていることを確認する
+  expect('id' in response.data).toBeTruthy();
+});

@@ -2,7 +2,7 @@ import { Company } from "interfaces";
 import client from "./client";
 import { BriefCompany } from '../../interfaces/index';
 
-/// (/) おすすめの会社情報を5件取得する
+/// おすすめの会社情報を5件取得する
 export const reccomendCompany = () => {
   return client.get<Array<BriefCompany>>("recommended-companies")
 }
@@ -31,7 +31,7 @@ export const skillSearchCompany = (lang: string) => {
 // 指定した会社番号の詳細情報を取得する
 export const companyDetail = (companyId: string) => {
   const getUrl: string = `companies/${companyId}`;
-  return client.get(getUrl);
+  return client.get<Company>(getUrl);
 }
 
 export const registration = (data: Company) => {
