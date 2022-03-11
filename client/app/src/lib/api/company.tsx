@@ -1,11 +1,12 @@
 import { Company } from "interfaces";
-import client from "lib/api/client";
+import client from "./client";
+import { BriefCompany } from '../../interfaces/index';
 
 /// ( apiを使用するページ )　説明　の形式で説明している
 
 /// (/) おすすめの会社情報を5件取得する
 export const reccomendCompany = () => {
-  return client.get("recommended-companies")
+  return client.get<Array<BriefCompany>>("recommended-companies")
 }
 
 /// (/search) 会社名で検索する際に使用
@@ -23,7 +24,7 @@ export const searchCompany = (page: number) => {
   return client.get(getUrl)
 }
 
-export const skillSearchCompany = (lang:string) => {
+export const skillSearchCompany = (lang: string) => {
   const getUrl: string = `skill-search?lang=${lang}`;
   return client.get(getUrl)
 }

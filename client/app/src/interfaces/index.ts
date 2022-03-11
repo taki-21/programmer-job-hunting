@@ -1,3 +1,4 @@
+import CompanyImage from 'images/company.jpg';
 // サインアップ
 export interface SignUpData {
   name: string;
@@ -35,6 +36,13 @@ export interface Company {
   companyNumOfEmp?: string;
   companyImage?: File;
   techCategoryId: number;
+}
+
+// トップページなどで表示する会社名と会社画像を持った型を定義
+export interface BriefCompany {
+  id: number;
+  companyName: string;
+  CompanyImage?: string;
 }
 
 /// TechStackで使用
