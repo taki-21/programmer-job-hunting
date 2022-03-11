@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import { reccomendCompany, companyNameSearch, searchCompany, companyDetail } from '../src/lib/api/company';
 
 // APIから返却される企業情報が5件であるかを確認する
