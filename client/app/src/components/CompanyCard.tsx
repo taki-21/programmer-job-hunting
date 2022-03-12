@@ -5,9 +5,10 @@ import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import DummyLogo from "images/Icon-512.png";
+import { BriefCompany } from '../interfaces/index';
 
 type Props = {
-  data: Company;
+  data: BriefCompany;
 };
 
 const useStyles = makeStyles((theme: Theme) => ({

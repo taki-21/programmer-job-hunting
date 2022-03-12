@@ -8,6 +8,7 @@ import CompanyCard from "../../components/CompanyCard";
 import { Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
+import { BriefCompany } from '../../interfaces/index';
 
 const useStyles = makeStyles((theme: Theme) => ({
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const CompanySearch: React.FC = () => {
   const classes = useStyles()
   const [page, setPage] = useState(1)
-  const [companies, setCompanies] = useState<Company[]>([])
+  const [companies, setCompanies] = useState<BriefCompany[]>([])
   const history = useHistory()
 
 
@@ -43,10 +44,10 @@ const CompanySearch: React.FC = () => {
     <>
       <Text as="h1" fontSize="25">全ての会社から探す</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}/>) : null}
+        {companies.length !== 0 ? companies.map((company: BriefCompany) => <CompanyCard key={company.id} data={company} />) : null}
       </List>
       <div className={classes.pagenation_center}>
-        <Pagination count={10} onChange={(_, page) => setPage(page)}/>
+        <Pagination count={10} onChange={(_, page) => setPage(page)} />
       </div>
     </>
   )
