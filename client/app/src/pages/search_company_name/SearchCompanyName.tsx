@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Text } from "@chakra-ui/layout";
 import CompanyCard from "components/CompanyCard"
-import { Company } from "interfaces";
+import { BriefCompany, Company } from "interfaces";
 import { List } from "@material-ui/core";
 import { companyNameSearch } from "lib/api/company";
 import VoidImage from "images/undraw_void_3ggu.png";
@@ -14,7 +14,7 @@ const SearchCompanyName: React.FC = () => {
   const query = new URLSearchParams(useLocation().search);
   const [page, setPage] = useState(query.get('page') ?? "")
   const [keyword, setKeyword] = useState(query.get('keyword') ?? "");
-  const [companies, setCompanies] = useState([])
+  const [companies, setCompanies] = useState<BriefCompany[]>([])
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory()
 
@@ -52,7 +52,7 @@ const SearchCompanyName: React.FC = () => {
     <>
       <Text as="h1" fontSize="25">{keyword}での検索結果</Text>
       <List>
-        {companies.length !== 0 ? companies.map((company: Company) => <CompanyCard key={company.id} data={company}/>) : null}
+        {companies.length !== 0 ? companies.map((company: BriefCompany) => <CompanyCard key={company.id} data={company} />) : null}
       </List>
     </>
   )
