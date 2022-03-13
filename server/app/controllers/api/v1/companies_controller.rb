@@ -20,7 +20,7 @@ module Api
                     else
                       Company.page(params[:page] ||= 1).per(10).order(created_at: :desc)
                     end
-                    
+
         authorize companies
         render json: companies
       end

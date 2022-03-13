@@ -10,6 +10,7 @@ class LikePolicy < ApplicationPolicy
   def destroy?
     @user.present? && !@user.recruiter
   end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
