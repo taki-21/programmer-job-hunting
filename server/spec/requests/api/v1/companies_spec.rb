@@ -38,10 +38,12 @@ RSpec.describe 'Api::V1::Companies', type: :request do
       # データが作成されていることを確認
       post '/api/v1/companies', params: { company: valid_params }
 
-      expect(Company.all.count).to eq 1
+      # 権限がないを表す403が返ってきたか確認
+      expect(response.status).to eq 403
+      # expect(Company.all.count).to eq 1
 
-      # リクエスト成功を表す200が返ってきたか確認
-      expect(response.status).to eq 200
+      # # リクエスト成功を表す200が返ってきたか確認
+      # expect(response.status).to eq 200
     end
 
     it '会社情報の更新を行う' do
@@ -53,22 +55,30 @@ RSpec.describe 'Api::V1::Companies', type: :request do
       put "/api/v1/companies/#{company.id}", params: { company: valid_params }
       data = JSON.parse(response.body)
 
-      # リクエスト成功を表す200が返ってきたか確認する。
-      expect(response.status).to eq(200)
+      # 権限がないを表す403が返ってきたか確認
+      expect(response.status).to eq 403
 
-      # データが更新されている事を確認
-      expect(data['company_name']).to eq('updated_company')
+      # # リクエスト成功を表す200が返ってきたか確認する。
+      # expect(response.status).to eq(200)
+
+      # # データが更新されている事を確認
+      # expect(data['company_name']).to eq('updated_company')
     end
     it '会社を削除する' do
       # ログイン
       login create(:user)
       company = create(:company)
 
-      # データが削除されている事を確認
-      expect { delete "/api/v1/companies/#{company.id}" }.to change(Company, :count).by(-1)
+      delete "/api/v1/companies/#{company.id}"
 
-      # リクエスト成功を表す200が返ってきたか確認する。
-      expect(response.status).to eq(200)
+      # 権限がないを表す403が返ってきたか確認
+      expect(response.status).to eq 403
+
+      # # データが削除されている事を確認
+      # expect { delete "/api/v1/companies/#{company.id}" }.to change(Company, :count).by(-1)
+
+      # # リクエスト成功を表す200が返ってきたか確認する。
+      # expect(response.status).to eq(200)
     end
   end
 end
