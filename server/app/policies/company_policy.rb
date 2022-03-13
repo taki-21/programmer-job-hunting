@@ -1,13 +1,16 @@
 class CompanyPolicy < ApplicationPolicy
   def pickup?
-    true
+    @user.present? && (@user.admin || @user.recruiter)
   end
+
   def index?
     true
   end
+
   def search?
     true
   end
+
   def skill_search?
     true
   end
@@ -17,16 +20,17 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def create?
-    @user.present? && !@user.recruiter
+    @user.present? && (@user.admin || @user.recruiter)
   end
 
   def update?
-    @record.user == @user && !@user.recruiter
+    @user.present? && (@user.admin || @user.recruiter)
   end
 
   def destroy?
-    @record.user == @user && !@user.recruiter
+    @user.present? && (@user.admin || @user.recruiter)
   end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
