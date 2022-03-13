@@ -24,11 +24,11 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.present? && (@user.admin || @user.recruiter)
+    @user.present? && (@user.admin || @record.user == @user)
   end
 
   def destroy?
-    @user.present? && (@user.admin || @user.recruiter)
+    @user.present? && (@user.admin || @record.user == @user)
   end
 
   class Scope < Scope
