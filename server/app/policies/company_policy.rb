@@ -1,6 +1,6 @@
 class CompanyPolicy < ApplicationPolicy
   def pickup?
-    @user.present? && (@user.admin || @user.recruiter)
+    true
   end
 
   def index?
