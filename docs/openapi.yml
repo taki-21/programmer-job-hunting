@@ -334,6 +334,16 @@ paths:
                   type: string
                   description: 確認用パスワード
                   example: password
+                admin:
+                  type: boolean
+                  description: 管理者
+                  example: true
+                  nullable: true
+                recruiter:
+                  type: boolean
+                  description: 採用担当者
+                  example: false
+                  nullable: true
       responses:
         200:
           description: OK
