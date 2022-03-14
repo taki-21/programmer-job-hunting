@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { reccomendCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyTile from "./CompanyMiniTile";
-import { Company } from "interfaces";
+import { BriefCompany, Company } from "interfaces";
 import { Grid } from "@material-ui/core";
 
 
 const ReccomendCompanies: React.FC = () => {
-  const [companies, setCompanies] = useState([])
+  const [companies, setCompanies] = useState<BriefCompany[]>([])
 
   /// apiからトップに表示する会社を取得する
   useEffect(() => {
@@ -28,7 +28,7 @@ const ReccomendCompanies: React.FC = () => {
       <Grid container>
         {
           companies.map(
-            (item: Company) =>
+            (item: BriefCompany) =>
               <Grid item key={item.id}>
                 <CompanyTile data={item} />
               </Grid>

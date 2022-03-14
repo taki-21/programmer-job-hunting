@@ -1,3 +1,5 @@
+import CompanyImage from 'images/company.jpg';
+import { companyDetail } from '../lib/api/company';
 // サインアップ
 export interface SignUpData {
   name: string;
@@ -26,7 +28,7 @@ export interface User {
   isRecruting: boolean;
 }
 
-// 会社情報の型を定義
+// 会社の詳細情報を持ったインターフェース
 export interface Company {
   id: number;
   companyName: string;
@@ -35,6 +37,14 @@ export interface Company {
   companyNumOfEmp?: string;
   companyImage?: File;
   techCategoryId: number;
+}
+
+// トップページなどで表示する会社名と会社画像を持った型を定義
+export interface BriefCompany {
+  id: number;
+  companyName: string;
+  CompanyImage?: string;
+  companyOverview?: string;
 }
 
 /// TechStackで使用
