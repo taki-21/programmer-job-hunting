@@ -53,7 +53,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
 
       valid_params = { company_name: 'updated_company', company_overview: 'sample_company_overview', company_address: 'shibuya', company_num_of_emp: '100' }
       put "/api/v1/companies/#{company.id}", params: { company: valid_params }
-      data = JSON.parse(response.body)
+      # data = JSON.parse(response.body)
 
       # 権限がないを表す403が返ってきたか確認
       expect(response.status).to eq 403
