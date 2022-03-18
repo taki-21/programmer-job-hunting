@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/health' => 'health#index'
   namespace :api do
     namespace :v1 do
       get '/recommended-companies', to: 'companies#pickup'
