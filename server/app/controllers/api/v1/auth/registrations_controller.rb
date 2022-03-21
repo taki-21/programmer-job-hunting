@@ -7,7 +7,7 @@ module Api
         private
 
         def sign_up_params
-          params.require(:user).permit(:email, :password, :password_confirmation, :name)
+          params.permit(:name, :email, :password, :password_confirmation, :admin, :recruiter)
         end
       end
     end
