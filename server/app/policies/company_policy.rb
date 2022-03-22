@@ -20,6 +20,10 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def create?
+    # @user.admin == @user.recruiter == falseの場合はアカウントをリクルーター扱いにする
+    if @user.admin == false && @user.recruiter == false
+      @user.recruiter = true
+    end
     @user.present? && (@user.admin || @user.recruiter)
   end
 
