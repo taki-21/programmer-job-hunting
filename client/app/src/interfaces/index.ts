@@ -1,5 +1,4 @@
-import CompanyImage from 'images/company.jpg';
-import { companyDetail } from '../lib/api/company';
+
 // サインアップ
 export interface SignUpData {
   name: string;
