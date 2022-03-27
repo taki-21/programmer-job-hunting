@@ -18,7 +18,7 @@ const CompanyMiniTile: React.FC<{ props: BriefCompany }> = ({ props }) => {
   return (
     <Card className={classes.card}>
       <CardActionArea >
-        <Link to={`/detail/${props.id}`} target="_blank" rel="noopener">
+        <Link to={`/detail/${props.id}`} >
           <CardMedia
             component="img"
             image={props.companyImage ?? DummyImage}
