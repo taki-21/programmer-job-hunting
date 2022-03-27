@@ -5,21 +5,9 @@ import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import CancelIcon from "@material-ui/icons/Cancel";
-import axios, { AxiosPromise, AxiosResponse } from "axios";
-import applyCaseMiddleware from "axios-case-converter";
+import axios from "axios";
 
 import client from "lib/api/client";
-
-// Postするデータにはidが存在しないことによりエラーが発生したので
-// interfaceで定義したCompanyとは別で定義している（要リファクタ）
-
-// interface PostCompany {
-//   companyName: string;
-//   companyAddress: string;
-//   companyOverview: string;
-//   companyNumOfEmp: string;
-//   companyImage: File | undefined;
-// }
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardContentText: {
@@ -193,6 +181,7 @@ const Registration: React.FC = () => {
           </CardContent>
         </Card>
       </form>
+
     </>
   );
 };
