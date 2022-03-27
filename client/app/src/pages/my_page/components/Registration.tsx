@@ -49,31 +49,31 @@ const Registration: React.FC = () => {
   }, []);
 
   // FormData形式でデータを作成
-  const createFormData = (): FormData => {
+  const createFormData = (url: string): FormData => {
     const formData = new FormData();
     formData.append("company[company_name]", companyName); // ポイント1！
     formData.append("company[company_overview]", companyOverview);
     formData.append("company[company_address]", companyAddress);
     formData.append("company[company_num_of_emp]", companyNumOfEmp);
-    if (companyImage) formData.append("company[company_image]", companyImage);
-
+    formData.append("company[company_image]", url);
     return formData;
   };
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = createFormData();
+    var url = await createPost();
 
-    await createPost(data).then(() => {
-      setCompanyName("");
-      setCompanyAddress("");
-      setCompanyNumOfEmp("");
-      setCompanyOverview("");
-      setImage(undefined);
-    });
+    const data = createFormData(url);
+    await client.post("/companies", data);
+    setCompanyName("");
+    setCompanyAddress("");
+    setCompanyNumOfEmp("");
+    setCompanyOverview("");
+    setImage(undefined);
+    setPreview("");
   };
 
-  const createPost = async (data: FormData) => {
+  const createPost = async () => {
     // 署名付きURLを取得する
     const { data: { signedUrl, key } } = await client.post("/images");
     // 取得した署名付きURLに画像をアップロードする
@@ -83,9 +83,9 @@ const Registration: React.FC = () => {
         'Access-Control-Allow-Origin': location.href,
       },
     })
-    // バケツから保存した画像のURLを取得する
-
-    // 取得したURLをImageURLとして保存する
+    var imageURL = process.env.REACT_APP_S3_ENDPOINT + key;
+    // setStateで更新した値が更新されるのは関数が終わった後なので、URLを戻り値として返す
+    return imageURL;
   };
 
   return (
