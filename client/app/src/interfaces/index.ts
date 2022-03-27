@@ -35,7 +35,7 @@ export interface Company {
   companyAddress: string;
   companyOverview?: string;
   companyNumOfEmp?: string;
-  companyImage?: File;
+  companyImageURL?: string;
   techCategoryId: number;
 }
 
@@ -43,7 +43,7 @@ export interface Company {
 export interface BriefCompany {
   id: number;
   companyName: string;
-  CompanyImage?: string;
+  companyImage?: string;
   companyOverview?: string;
 }
 
