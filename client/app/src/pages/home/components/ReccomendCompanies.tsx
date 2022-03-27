@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { reccomendCompany } from "lib/api/company";
 import { Text } from "@chakra-ui/layout";
 import CompanyTile from "./CompanyMiniTile";
-import { BriefCompany, Company } from "interfaces";
+import { BriefCompany } from "interfaces";
 import { Grid } from "@material-ui/core";
 
 
@@ -30,7 +30,7 @@ const ReccomendCompanies: React.FC = () => {
           companies.map(
             (item: BriefCompany) =>
               <Grid item key={item.id}>
-                <CompanyTile data={item} />
+                <CompanyTile props={item} />
               </Grid>
           )
         }

@@ -1,15 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles"
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
-import CompanyImage from "images/company.jpg"
+import DummyImage from "images/company.jpg"
 import { Link } from "react-router-dom";
-
-type Props = {
-  data: {
-    id: number;
-    companyName: String;
-  };
-}
+import { BriefCompany } from '../../../interfaces/index';
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -18,21 +12,21 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const CompanyMiniTile: React.FC<Props> = (props) => {
+const CompanyMiniTile: React.FC<{ props: BriefCompany }> = ({ props }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardActionArea >
-        <Link to={`/detail/${props.data.id}`} target="_blank" rel="noopener">
+        <Link to={`/detail/${props.id}`} target="_blank" rel="noopener">
           <CardMedia
             component="img"
-            image={CompanyImage}
+            image={props.companyImage ?? DummyImage}
             alt="company image"
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              {props.data.companyName}
+              {props.companyName}
             </Typography>
           </CardContent>
         </Link>
