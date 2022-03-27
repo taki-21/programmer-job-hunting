@@ -85,8 +85,19 @@ const Registration: React.FC = () => {
     });
   };
 
-  const createPost = (data: FormData): AxiosPromise => {
-    return client.post("/companies", data);
+  const createPost = async (data: FormData) => {
+    // 署名付きURLを取得する
+    const { data: { signedUrl, key } } = await client.post("/images");
+    // 取得した署名付きURLに画像をアップロードする
+    await axios.put(signedUrl, companyImage, {
+      headers: {
+        // eslint-disable-next-line no-restricted-globals
+        'Access-Control-Allow-Origin': location.href,
+      },
+    })
+    // バケツから保存した画像のURLを取得する
+
+    // 取得したURLをImageURLとして保存する
   };
 
   return (
