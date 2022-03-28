@@ -5,21 +5,10 @@ import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import CancelIcon from "@material-ui/icons/Cancel";
-import axios, { AxiosPromise, AxiosResponse } from "axios";
-import applyCaseMiddleware from "axios-case-converter";
+import axios from "axios";
 
 import client from "lib/api/client";
-
-// Postするデータにはidが存在しないことによりエラーが発生したので
-// interfaceで定義したCompanyとは別で定義している（要リファクタ）
-
-// interface PostCompany {
-//   companyName: string;
-//   companyAddress: string;
-//   companyOverview: string;
-//   companyNumOfEmp: string;
-//   companyImage: File | undefined;
-// }
+import AlertMessage from "components/AlertMessage"
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardContentText: {
@@ -48,6 +37,8 @@ const Registration: React.FC = () => {
   const [companyNumOfEmp, setCompanyNumOfEmp] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
 
+  const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
+
   const uploadImage = useCallback((e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -61,32 +52,45 @@ const Registration: React.FC = () => {
   }, []);
 
   // FormData形式でデータを作成
-  const createFormData = (): FormData => {
+  const createFormData = (url: string): FormData => {
     const formData = new FormData();
     formData.append("company[company_name]", companyName); // ポイント1！
     formData.append("company[company_overview]", companyOverview);
     formData.append("company[company_address]", companyAddress);
     formData.append("company[company_num_of_emp]", companyNumOfEmp);
-    if (companyImage) formData.append("company[company_image]", companyImage);
-
+    formData.append("company[company_image]", url);
     return formData;
   };
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = createFormData();
+    var url = await createPost();
 
-    await createPost(data).then(() => {
-      setCompanyName("");
-      setCompanyAddress("");
-      setCompanyNumOfEmp("");
-      setCompanyOverview("");
-      setImage(undefined);
-    });
+    const data = createFormData(url);
+    await client.post("/companies", data);
+    setCompanyName("");
+    setCompanyAddress("");
+    setCompanyNumOfEmp("");
+    setCompanyOverview("");
+    setImage(undefined);
+    setPreview("");
+
+    setAlertMessageOpen(true);
   };
 
-  const createPost = (data: FormData): AxiosPromise => {
-    return client.post("/companies", data);
+  const createPost = async () => {
+    // 署名付きURLを取得する
+    const { data: { signedUrl, key } } = await client.post("/images");
+    // 取得した署名付きURLに画像をアップロードする
+    await axios.put(signedUrl, companyImage, {
+      headers: {
+        // eslint-disable-next-line no-restricted-globals
+        'Access-Control-Allow-Origin': location.href,
+      },
+    })
+    var imageURL = process.env.REACT_APP_S3_ENDPOINT + key;
+    // setStateで更新した値が更新されるのは関数が終わった後なので、URLを戻り値として返す
+    return imageURL;
   };
 
   return (
@@ -182,6 +186,12 @@ const Registration: React.FC = () => {
           </CardContent>
         </Card>
       </form>
+      <AlertMessage
+        open={alertMessageOpen}
+        setOpen={setAlertMessageOpen}
+        severity="success"
+        message="会社情報を登録しました。"
+      />
     </>
   );
 };

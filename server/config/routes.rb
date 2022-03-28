@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/recommended-companies', to: 'companies#pickup'
       get '/skill-search', to: 'companies#skill_search'
+      resources :images, only: %i[show create]
       resources :companies do
         collection do
           get :search

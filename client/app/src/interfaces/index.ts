@@ -1,5 +1,4 @@
-import CompanyImage from 'images/company.jpg';
-import { companyDetail } from '../lib/api/company';
+
 // サインアップ
 export interface SignUpData {
   name: string;
@@ -35,7 +34,7 @@ export interface Company {
   companyAddress: string;
   companyOverview?: string;
   companyNumOfEmp?: string;
-  companyImage?: File;
+  companyImageURL?: string;
   techCategoryId: number;
 }
 
@@ -43,7 +42,7 @@ export interface Company {
 export interface BriefCompany {
   id: number;
   companyName: string;
-  CompanyImage?: string;
+  companyImage?: string;
   companyOverview?: string;
 }
 

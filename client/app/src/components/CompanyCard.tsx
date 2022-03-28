@@ -1,10 +1,7 @@
 import { Typography, ListItem, Card, Grid, Box } from "@material-ui/core";
-import { Company } from "interfaces";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import DummyLogo from "images/Icon-512.png";
 import { BriefCompany } from '../interfaces/index';
 
 type Props = {
@@ -50,15 +47,12 @@ const CompanyCard: React.FC<Props> = (props) => {
         <Grid container spacing={2}>
           <Grid item>
             <Box className={classes.image}>
-              <img src={DummyLogo} alt="dummy logo" />
+              <img src={props.data.companyImage} alt={props.data.companyImage} />
             </Box>
           </Grid>
 
           <Grid item xs={12} sm container>
             <Grid item xs>
-              <Typography variant="body2" color="textSecondary">
-                広告・マスコミ | テレビ・ラジオ
-              </Typography>
               <Link
                 to={`/detail/${props.data.id}`}
                 className={classes.companyNameText}

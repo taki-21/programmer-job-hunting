@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Company < ApplicationRecord
-  has_one_attached :company_image
   belongs_to :user
   has_many :techstacks, dependent: :destroy
   has_many :incomes, dependent: :destroy
