@@ -8,6 +8,7 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import axios from "axios";
 
 import client from "lib/api/client";
+import AlertMessage from "components/AlertMessage"
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardContentText: {
@@ -35,6 +36,8 @@ const Registration: React.FC = () => {
   const [companyOverview, setCompanyOverview] = useState<string>("");
   const [companyNumOfEmp, setCompanyNumOfEmp] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
+
+  const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
 
   const uploadImage = useCallback((e) => {
     const file = e.target.files[0];
@@ -71,6 +74,8 @@ const Registration: React.FC = () => {
     setCompanyOverview("");
     setImage(undefined);
     setPreview("");
+
+    setAlertMessageOpen(true);
   };
 
   const createPost = async () => {
@@ -181,7 +186,12 @@ const Registration: React.FC = () => {
           </CardContent>
         </Card>
       </form>
-
+      <AlertMessage
+        open={alertMessageOpen}
+        setOpen={setAlertMessageOpen}
+        severity="success"
+        message="会社情報を登録しました。"
+      />
     </>
   );
 };
