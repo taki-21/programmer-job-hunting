@@ -2,7 +2,10 @@ name: Ruby Backend Test and Build-Push
 
 on:
   push:
-    branches: [ main, develop, make-backend-ci ]
+    branches: 
+      - main
+      - develop
+      - make-backend-ci
 
 jobs:
 
@@ -11,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+
     - name: Create DB
       run: docker compose run api rails db:create
 
