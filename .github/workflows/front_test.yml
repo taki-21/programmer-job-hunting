@@ -1,6 +1,10 @@
 name: front_test
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
   front_test:
