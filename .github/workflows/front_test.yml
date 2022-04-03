@@ -1,0 +1,22 @@
+name: front_test
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  front_test:
+    runs-on: ubuntu-latest
+    steps:
+      # yarnをインストール
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - uses: actions/checkout@v1
+      - name: yarn install
+        run: yarn --cwd client/app install
+
+      - name: Test
+        run: yarn --cwd client/app test
